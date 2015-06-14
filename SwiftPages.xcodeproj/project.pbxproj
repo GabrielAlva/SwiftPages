@@ -16,6 +16,7 @@
 		6489B04F1B0EE03F009E6AA4 /* PagedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6489B04E1B0EE03F009E6AA4 /* PagedScrollViewController.swift */; };
 		6489B0551B0EE4E9009E6AA4 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6489B0541B0EE4E9009E6AA4 /* TestClass.swift */; };
 		6489B0571B1145FC009E6AA4 /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6489B0561B1145FC009E6AA4 /* SwiftPages.swift */; };
+		648E9F951B2CC24D00AB2EC1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E9F941B2CC24D00AB2EC1 /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		6489B04E1B0EE03F009E6AA4 /* PagedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollViewController.swift; sourceTree = "<group>"; };
 		6489B0541B0EE4E9009E6AA4 /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
 		6489B0561B1145FC009E6AA4 /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
+		648E9F941B2CC24D00AB2EC1 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				6489B0371B0EDEEA009E6AA4 /* LaunchScreen.xib */,
 				6489B02C1B0EDEEA009E6AA4 /* Supporting Files */,
 				6489B0561B1145FC009E6AA4 /* SwiftPages.swift */,
+				648E9F941B2CC24D00AB2EC1 /* TestViewController.swift */,
 			);
 			path = SwiftPages;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				6489B0571B1145FC009E6AA4 /* SwiftPages.swift in Sources */,
 				6489B0311B0EDEEA009E6AA4 /* ViewController.swift in Sources */,
 				6489B04F1B0EE03F009E6AA4 /* PagedScrollViewController.swift in Sources */,
+				648E9F951B2CC24D00AB2EC1 /* TestViewController.swift in Sources */,
 				6489B02F1B0EDEEA009E6AA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +427,7 @@
 				6489B04A1B0EDEEA009E6AA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6489B04B1B0EDEEA009E6AA4 /* Build configuration list for PBXNativeTarget "SwiftPagesTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +436,7 @@
 				6489B04D1B0EDEEA009E6AA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
