@@ -42,11 +42,11 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
         containerView.addSubview(scrollView)
 
         // MARK: - View Controller ID Array -
-        viewControllerIDs = ["FirstVC", "SecondVC"]
+        viewControllerIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         
         // MARK: - Button Titles Array -
         //Important - Must Have The Same Number Of Items As The viewControllerIDs Array
-        buttonTitles = ["First", "Second"]
+        buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
         
         //Set the top bar buttons
         var buttonsXPosition: CGFloat = 0
