@@ -10,18 +10,35 @@ import UIKit
 
 class SwiftPages: UIViewController, UIScrollViewDelegate {
     
-    private var containerView: UIView!
-    private var scrollView: UIScrollView!
-    private var animatedBar: UIView!
-    var viewControllerIDs: [String] = []
-    var buttonTitles: [String] = []
-    private var pageViews: [UIViewController?] = []
+    //Item variables
+    private var containerView : UIView!
+    private var scrollView : UIScrollView!
+    private var topBar : UIView!
+    private var animatedBar : UIView!
+    var viewControllerIDs : [String] = []
+    var buttonTitles : [String] = []
+    var buttonImages : [UIImage] = []
+    private var pageViews : [UIViewController?] = []
     
+    // MARK: - API's -
+    //Color variables
+    var animatedBarColor = UIColor(red: 28/255, green: 95/255, blue: 185/255, alpha: 1)
+    var topBarBackground = UIColor.whiteColor()
+    var buttonsTextColor = UIColor.grayColor()
+    var containerViewBackground = UIColor.clearColor()
+    
+    //Item size variables
+    var topBarHeight : CGFloat = 42
+    var animatedBarHeight : CGFloat = 3
+    
+    //Bar item variables
+    var buttonsWithImages : Bool = false
+    var buttonsTextFontAndSize : UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: - Size and positions of the container view -
+        // MARK: - Size And Positions Of The Container View -
         var xOrigin:CGFloat = 0
         var yOrigin:CGFloat = 35
         var pagesContainerHeight = self.view.frame.height - 35
@@ -29,11 +46,16 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         
         //Set the containerView, every item is constructed relative to this view
         containerView = UIView(frame: CGRectMake(xOrigin, yOrigin, pagesContainerWidth, pagesContainerHeight))
-        containerView.backgroundColor = UIColor.grayColor()
+        containerView.backgroundColor = containerViewBackground
         self.view.addSubview(containerView)
         
+        //Set the top bar
+        topBar = UIView(frame: CGRectMake(0, 0, containerView.frame.size.width, topBarHeight))
+        topBar.backgroundColor = topBarBackground
+        containerView.addSubview(topBar)
+        
         //Set the scrollview
-        scrollView = UIScrollView(frame: CGRectMake(0, 42, containerView.frame.size.width, containerView.frame.size.height - 42))
+        scrollView = UIScrollView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, containerView.frame.size.height - topBarHeight))
         scrollView.pagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -44,9 +66,11 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         // MARK: - View Controller ID Array -
         viewControllerIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         
-        // MARK: - Button Titles Array -
+        // MARK: - Button Titles/Images Array -
         //Important - Must Have The Same Number Of Items As The viewControllerIDs Array
         buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
+        //Button images (Added if the buttonsWithImages var is set to true)
+        
         
         //Set the top bar buttons
         var buttonsXPosition: CGFloat = 0
@@ -54,22 +78,22 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         for item in buttonTitles
         {
             var barButton: UIButton!
-            barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), 42))
-            barButton.backgroundColor = UIColor.whiteColor()
-            barButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+            barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
+            barButton.backgroundColor = UIColor.clearColor()
+            barButton.titleLabel!.font = buttonsTextFontAndSize
             barButton.setTitle(buttonTitles[buttonNumber], forState: UIControlState.Normal)
-            barButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+            barButton.setTitleColor(buttonsTextColor, forState: UIControlState.Normal)
             barButton.tag = buttonNumber
             barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            containerView.addSubview(barButton)
+            topBar.addSubview(barButton)
             buttonsXPosition = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count) + buttonsXPosition
             buttonNumber++
         }
         
         //Set up the animated UIView
-        animatedBar = UIView(frame: CGRectMake(0, 40, (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.8, 3))
+        animatedBar = UIView(frame: CGRectMake(0, topBarHeight - animatedBarHeight + 1, (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.8, animatedBarHeight))
         animatedBar.center.x = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count * 2)
-        animatedBar.backgroundColor = UIColor(red: 28/255, green: 95/255, blue: 185/255, alpha: 1)
+        animatedBar.backgroundColor = animatedBarColor
         containerView.addSubview(animatedBar)
         
         let pageCount = viewControllerIDs.count
@@ -110,11 +134,12 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
             //Create the variable that will hold the VC being load
             var newPageView:UIViewController
             
+            //Look for the VC by its identifier in the storyboard and add it to the scrollview
             newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page]) as! UIViewController
             newPageView.view.frame = frame
             scrollView.addSubview(newPageView.view)
             
-            // 4
+            //Replace the nil in the pageViews array with the VC just created
             pageViews[page] = newPageView
         }
     }
