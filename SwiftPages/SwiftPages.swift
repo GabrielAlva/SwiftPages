@@ -26,11 +26,9 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
     var topBarBackground = UIColor.whiteColor()
     var buttonsTextColor = UIColor.grayColor()
     var containerViewBackground = UIColor.clearColor()
-    
     //Item size variables
     var topBarHeight : CGFloat = 42
     var animatedBarHeight : CGFloat = 3
-    
     //Bar item variables
     var buttonsWithImages : Bool = false
     var BarShadow : Bool = true
@@ -70,7 +68,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         }
         
         // MARK: - Button Titles/Images Array -
-        //Important - Must Have The Same Number Of Items As The viewControllerIDs Array
+        //Important - Titles/Images Array must Have The Same Number Of Items As The viewControllerIDs Array
         if buttonTitles.count == 0 {
             buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
         }
@@ -155,7 +153,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
             buttonTitles = buttonTitlesArray
             buttonsWithImages = false
         } else {
-            print("Initilization failed, the VC ID array count does not match the button titles array count.")
+            println("Initilization failed, the VC ID array count does not match the button titles array count.")
         }
     }
     
@@ -166,7 +164,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
             buttonImages = buttonImagesArray
             buttonsWithImages = true
         } else {
-            print("Initilization failed, the VC ID array count does not match the button images array count.")
+            println("Initilization failed, the VC ID array count does not match the button images array count.")
         }
     }
     
