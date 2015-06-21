@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64015D8A1B3766DC00A6B549 /* Ovals.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D891B3766DC00A6B549 /* Ovals.png */; };
+		64015D8C1B3766E400A6B549 /* VerticalLines.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8B1B3766E400A6B549 /* VerticalLines.png */; };
+		64015D8E1B3766EB00A6B549 /* HorizontalLines.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8D1B3766EB00A6B549 /* HorizontalLines.png */; };
+		64015D911B3766F500A6B549 /* Circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8F1B3766F500A6B549 /* Circle.png */; };
+		64015D921B3766F500A6B549 /* SquareTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D901B3766F500A6B549 /* SquareTriangle.png */; };
 		6489B02F1B0EDEEA009E6AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6489B02E1B0EDEEA009E6AA4 /* AppDelegate.swift */; };
 		6489B0341B0EDEEA009E6AA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6489B0321B0EDEEA009E6AA4 /* Main.storyboard */; };
 		6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6489B0351B0EDEEA009E6AA4 /* Images.xcassets */; };
@@ -27,6 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64015D891B3766DC00A6B549 /* Ovals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ovals.png; sourceTree = "<group>"; };
+		64015D8B1B3766E400A6B549 /* VerticalLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VerticalLines.png; sourceTree = "<group>"; };
+		64015D8D1B3766EB00A6B549 /* HorizontalLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HorizontalLines.png; sourceTree = "<group>"; };
+		64015D8F1B3766F500A6B549 /* Circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle.png; sourceTree = "<group>"; };
+		64015D901B3766F500A6B549 /* SquareTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareTriangle.png; sourceTree = "<group>"; };
 		6489B0291B0EDEEA009E6AA4 /* SwiftPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6489B02D1B0EDEEA009E6AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6489B02E1B0EDEEA009E6AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +103,11 @@
 		6489B02C1B0EDEEA009E6AA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				64015D891B3766DC00A6B549 /* Ovals.png */,
+				64015D8B1B3766E400A6B549 /* VerticalLines.png */,
+				64015D8D1B3766EB00A6B549 /* HorizontalLines.png */,
+				64015D901B3766F500A6B549 /* SquareTriangle.png */,
+				64015D8F1B3766F500A6B549 /* Circle.png */,
 				6489B02D1B0EDEEA009E6AA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -196,6 +211,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6489B0341B0EDEEA009E6AA4 /* Main.storyboard in Resources */,
+				64015D911B3766F500A6B549 /* Circle.png in Resources */,
+				64015D8E1B3766EB00A6B549 /* HorizontalLines.png in Resources */,
+				64015D8A1B3766DC00A6B549 /* Ovals.png in Resources */,
+				64015D921B3766F500A6B549 /* SquareTriangle.png in Resources */,
+				64015D8C1B3766E400A6B549 /* VerticalLines.png in Resources */,
 				6489B0391B0EDEEA009E6AA4 /* LaunchScreen.xib in Resources */,
 				6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */,
 			);

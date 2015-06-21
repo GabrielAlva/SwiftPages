@@ -70,25 +70,48 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         //Important - Must Have The Same Number Of Items As The viewControllerIDs Array
         buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
         //Button images (Added if the buttonsWithImages var is set to true)
+        buttonImages = [UIImage(named:"Ovals.png")!,
+                        UIImage(named:"VerticalLines.png")!,
+                        UIImage(named:"HorizontalLines.png")!,
+                        UIImage(named:"SquareTriangle.png")!,
+                        UIImage(named:"Circle.png")!]
         
         
         //Set the top bar buttons
         var buttonsXPosition: CGFloat = 0
         var buttonNumber = 0
-        for item in buttonTitles
-        {
-            var barButton: UIButton!
-            barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
-            barButton.backgroundColor = UIColor.clearColor()
-            barButton.titleLabel!.font = buttonsTextFontAndSize
-            barButton.setTitle(buttonTitles[buttonNumber], forState: UIControlState.Normal)
-            barButton.setTitleColor(buttonsTextColor, forState: UIControlState.Normal)
-            barButton.tag = buttonNumber
-            barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            topBar.addSubview(barButton)
-            buttonsXPosition = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count) + buttonsXPosition
-            buttonNumber++
+        //Check to see if the top bar will be created with images ot text
+        if (!buttonsWithImages) {
+            for item in buttonTitles
+            {
+                var barButton: UIButton!
+                barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
+                barButton.backgroundColor = UIColor.clearColor()
+                barButton.titleLabel!.font = buttonsTextFontAndSize
+                barButton.setTitle(buttonTitles[buttonNumber], forState: UIControlState.Normal)
+                barButton.setTitleColor(buttonsTextColor, forState: UIControlState.Normal)
+                barButton.tag = buttonNumber
+                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+                topBar.addSubview(barButton)
+                buttonsXPosition = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count) + buttonsXPosition
+                buttonNumber++
+            }
+        } else {
+            for item in buttonImages
+            {
+                var barButton: UIButton!
+                barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
+                barButton.backgroundColor = UIColor.clearColor()
+                barButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+                barButton.setImage(item, forState: .Normal)
+                barButton.tag = buttonNumber
+                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+                topBar.addSubview(barButton)
+                buttonsXPosition = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count) + buttonsXPosition
+                buttonNumber++
+            }
         }
+        
         
         //Set up the animated UIView
         animatedBar = UIView(frame: CGRectMake(0, topBarHeight - animatedBarHeight + 1, (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.8, animatedBarHeight))
