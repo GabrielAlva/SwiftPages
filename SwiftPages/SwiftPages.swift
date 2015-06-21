@@ -65,18 +65,23 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         containerView.addSubview(scrollView)
         
         // MARK: - View Controller ID Array -
-        viewControllerIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
+        if viewControllerIDs.count == 0 {
+            viewControllerIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
+        }
         
         // MARK: - Button Titles/Images Array -
         //Important - Must Have The Same Number Of Items As The viewControllerIDs Array
-        buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
+        if buttonTitles.count == 0 {
+            buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
+        }
         //Button images (Added if the buttonsWithImages var is set to true)
-        buttonImages = [UIImage(named:"Ovals.png")!,
-                        UIImage(named:"VerticalLines.png")!,
-                        UIImage(named:"HorizontalLines.png")!,
-                        UIImage(named:"SquareTriangle.png")!,
-                        UIImage(named:"Circle.png")!]
-        
+        if buttonImages.count == 0 {
+            buttonImages = [UIImage(named:"Ovals.png")!,
+                UIImage(named:"VerticalLines.png")!,
+                UIImage(named:"HorizontalLines.png")!,
+                UIImage(named:"SquareTriangle.png")!,
+                UIImage(named:"Circle.png")!]
+        }
         
         //Set the top bar buttons
         var buttonsXPosition: CGFloat = 0
@@ -141,6 +146,28 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         
         //Load the pages to show initially
         loadVisiblePages()
+    }
+    
+    func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String])
+    {
+        if VCIDsArray.count == buttonTitlesArray.count {
+            viewControllerIDs = VCIDsArray
+            buttonTitles = buttonTitlesArray
+            buttonsWithImages = false
+        } else {
+            print("Initilization failed, the VC ID array count does not match the button titles array count.")
+        }
+    }
+    
+    func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage])
+    {
+        if VCIDsArray.count == buttonImagesArray.count {
+            viewControllerIDs = VCIDsArray
+            buttonImages = buttonImagesArray
+            buttonsWithImages = true
+        } else {
+            print("Initilization failed, the VC ID array count does not match the button images array count.")
+        }
     }
     
     func loadPage(page: Int)
