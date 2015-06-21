@@ -27,7 +27,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
     var buttonsTextColor = UIColor.grayColor()
     var containerViewBackground = UIColor.clearColor()
     //Item size variables
-    var topBarHeight : CGFloat = 42
+    var topBarHeight : CGFloat = 52
     var animatedBarHeight : CGFloat = 3
     //Bar item variables
     var buttonsWithImages : Bool = false
@@ -39,8 +39,8 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         
         // MARK: - Size And Positions Of The Container View -
         var xOrigin:CGFloat = 0
-        var yOrigin:CGFloat = 35
-        var pagesContainerHeight = self.view.frame.height - 35
+        var yOrigin:CGFloat = 67
+        var pagesContainerHeight = self.view.frame.height - yOrigin
         var pagesContainerWidth = self.view.frame.width
         
         //Set the containerView, every item is constructed relative to this view
@@ -144,6 +144,10 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         
         //Load the pages to show initially
         loadVisiblePages()
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
     
     func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String])
