@@ -33,6 +33,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
     
     //Bar item variables
     var buttonsWithImages : Bool = false
+    var BarShadow : Bool = true
     var buttonsTextFontAndSize : UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     override func viewDidLoad() {
@@ -118,6 +119,13 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         animatedBar.center.x = containerView.frame.size.width/(CGFloat)(viewControllerIDs.count * 2)
         animatedBar.backgroundColor = animatedBarColor
         containerView.addSubview(animatedBar)
+        
+        //Add the bar shadow (set to true or false with the BarShadow var)
+        if (BarShadow){
+            let barShadowImageView = UIImageView(image: UIImage(named:"BarShadow.png")!)
+            barShadowImageView.frame = CGRect(x: 0, y: topBarHeight, width: containerView.frame.size.width, height: 4)
+            containerView.addSubview(barShadowImageView)
+        }
         
         let pageCount = viewControllerIDs.count
         
