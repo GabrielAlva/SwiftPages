@@ -30,6 +30,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
     var topBarHeight : CGFloat = 52
     var animatedBarHeight : CGFloat = 3
     //Bar item variables
+    var aeroEffectInTopBar : Bool = false //This gives the top bap a blurred effect, also overlayes the it over the VC's
     var buttonsWithImages : Bool = false
     var BarShadow : Bool = true
     var buttonsTextFontAndSize : UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
@@ -40,7 +41,7 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         // MARK: - Size And Positions Of The Container View -
         var xOrigin:CGFloat = 0
         var yOrigin:CGFloat = 67
-        var pagesContainerHeight = self.view.frame.height - yOrigin
+        var pagesContainerHeight = self.view.frame.height - 67
         var pagesContainerWidth = self.view.frame.width
         
         //Set the containerView, every item is constructed relative to this view
@@ -48,19 +49,33 @@ class SwiftPages: UIViewController, UIScrollViewDelegate {
         containerView.backgroundColor = containerViewBackground
         self.view.addSubview(containerView)
         
-        //Set the top bar
-        topBar = UIView(frame: CGRectMake(0, 0, containerView.frame.size.width, topBarHeight))
-        topBar.backgroundColor = topBarBackground
-        containerView.addSubview(topBar)
-        
         //Set the scrollview
-        scrollView = UIScrollView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, containerView.frame.size.height - topBarHeight))
+        if (aeroEffectInTopBar) {
+            scrollView = UIScrollView(frame: CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height))
+        } else {
+            scrollView = UIScrollView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, containerView.frame.size.height - topBarHeight))
+        }
         scrollView.pagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.clearColor()
         containerView.addSubview(scrollView)
+        
+        //Set the top bar
+        topBar = UIView(frame: CGRectMake(0, 0, containerView.frame.size.width, topBarHeight))
+        topBar.backgroundColor = topBarBackground
+        if (aeroEffectInTopBar) {
+            //Create the blurred visual effect
+            //You can choose between ExtraLight, Light and Dark
+            topBar.backgroundColor = UIColor.clearColor()
+            let blurEffect : UIBlurEffect = UIBlurEffect(style : UIBlurEffectStyle.Light)
+            let blurView = UIVisualEffectView(effect: blurEffect)
+            blurView.frame = topBar.bounds
+            blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            topBar.addSubview(blurView)
+        }
+        containerView.addSubview(topBar)
         
         // MARK: - View Controller ID Array -
         if viewControllerIDs.count == 0 {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Swift Pages-->
@@ -56,10 +57,11 @@
             </objects>
             <point key="canvasLocation" x="91" y="815"/>
         </scene>
-        <!--View Controller-->
+        <!--Demo CollectionVC-->
         <scene sceneID="KWe-Ku-8b4">
             <objects>
-                <viewController restorationIdentifier="SecondVC" storyboardIdentifier="SecondVC" id="PLv-70-roH" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwa-f5-6CX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController restorationIdentifier="SecondVC" storyboardIdentifier="SecondVC" id="PLv-70-roH" customClass="DemoCollectionVC" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QVr-A7-oZD"/>
                         <viewControllerLayoutGuide type="bottom" id="EGA-He-oZW"/>
@@ -68,25 +70,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xde-Th-3t0">
-                                <rect key="frame" x="181" y="280" width="239" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="239" id="fHj-ox-vHN"/>
-                                    <constraint firstAttribute="height" constant="40" id="zHh-Qn-AnD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qrv-4l-phb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1.5" minimumInteritemSpacing="1.5" id="I1c-sq-B7A">
+                                    <size key="itemSize" width="123" height="123"/>
+                                    <size key="headerReferenceSize" width="0.0" height="52"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="1.5" minY="1.5" maxX="1.5" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="F4e-RU-dy7" customClass="CollectionViewCell" customModule="SwiftPages" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39d-T9-Zn5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="cellImage" destination="39d-T9-Zn5" id="ftK-PX-82F"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dzE-QP-Bag">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="PLv-70-roH" id="Sol-kE-kus"/>
+                                    <outlet property="delegate" destination="PLv-70-roH" id="G1I-Mi-ZhK"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="xde-Th-3t0" secondAttribute="centerX" constant="-0.5" id="9Zk-uj-ZV4"/>
-                            <constraint firstAttribute="centerY" secondItem="xde-Th-3t0" secondAttribute="centerY" id="I33-65-vEy"/>
+                            <constraint firstItem="Qrv-4l-phb" firstAttribute="top" secondItem="iLp-bg-doy" secondAttribute="topMargin" id="27h-WW-0rv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qrv-4l-phb" secondAttribute="trailing" constant="-16" id="5bk-eH-ALc"/>
+                            <constraint firstItem="Qrv-4l-phb" firstAttribute="leading" secondItem="iLp-bg-doy" secondAttribute="leadingMargin" constant="-16" id="R1m-tX-15C"/>
+                            <constraint firstItem="EGA-He-oZW" firstAttribute="top" secondItem="Qrv-4l-phb" secondAttribute="bottom" id="cdi-D9-9l0"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwa-f5-6CX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="844" y="815"/>
         </scene>
