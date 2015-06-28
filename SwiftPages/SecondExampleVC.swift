@@ -10,10 +10,15 @@ import UIKit
 
 class SecondExampleVC: UIViewController {
 
+    @IBOutlet var swiftPagesView: SwiftPages!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
+        var buttonTitles : [String] = ["First", "Second", "Third"]
+        swiftPagesView.setOriginY(0.0)
+        swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
     }
 
     override func didReceiveMemoryWarning() {

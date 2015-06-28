@@ -13,16 +13,16 @@ class FirstExampleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let SPView : TestView!
-        SPView = TestView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        let SPView : SwiftPages!
+        SPView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
         
-        var buttonTitles : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
+        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
         
         var buttonImages : [UIImage] = [UIImage(named:"HorizontalLines.png")!,
             UIImage(named:"SquareTriangle.png")!,
             UIImage(named:"Circle.png")!]
         
-        SPView.initializeWithVCIDsArrayAndButtonImagesArray(buttonTitles, buttonImagesArray: buttonImages)
+        SPView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
         
         self.view.addSubview(SPView)
     }
