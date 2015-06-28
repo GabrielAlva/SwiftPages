@@ -82,8 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				6467B2EF1B3FA3560071A3FF /* View Controllers */,
-				64015DA21B38DDFD00A6B549 /* CollectionViewCell.swift */,
-				64015DA41B38DF5A00A6B549 /* DemoCollectionVC.swift */,
 			);
 			name = "Demo App Files";
 			sourceTree = "<group>";
@@ -99,10 +97,39 @@
 		6467B2EF1B3FA3560071A3FF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6467B2F21B3FA8B20071A3FF /* Demo Assets */,
 				6467B2EA1B3F939E0071A3FF /* FirstExampleVC.swift */,
 				6467B2EC1B3F93B40071A3FF /* SecondExampleVC.swift */,
+				6467B2F01B3FA7FB0071A3FF /* Embedded View Controllers */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6467B2F01B3FA7FB0071A3FF /* Embedded View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				64015DA21B38DDFD00A6B549 /* CollectionViewCell.swift */,
+				64015DA41B38DF5A00A6B549 /* DemoCollectionVC.swift */,
+			);
+			name = "Embedded View Controllers";
+			sourceTree = "<group>";
+		};
+		6467B2F11B3FA8590071A3FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6489B02E1B0EDEEA009E6AA4 /* AppDelegate.swift */,
+				6489B0321B0EDEEA009E6AA4 /* Main.storyboard */,
+				6489B0351B0EDEEA009E6AA4 /* Images.xcassets */,
+				6489B0371B0EDEEA009E6AA4 /* LaunchScreen.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6467B2F21B3FA8B20071A3FF /* Demo Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Demo Assets";
 			sourceTree = "<group>";
 		};
 		6489B0201B0EDEEA009E6AA4 = {
@@ -128,10 +155,7 @@
 			children = (
 				6467B2EE1B3FA3170071A3FF /* Swift Pages */,
 				64015D951B37A11500A6B549 /* Demo App Files */,
-				6489B02E1B0EDEEA009E6AA4 /* AppDelegate.swift */,
-				6489B0321B0EDEEA009E6AA4 /* Main.storyboard */,
-				6489B0351B0EDEEA009E6AA4 /* Images.xcassets */,
-				6489B0371B0EDEEA009E6AA4 /* LaunchScreen.xib */,
+				6467B2F11B3FA8590071A3FF /* Resources */,
 				6489B02C1B0EDEEA009E6AA4 /* Supporting Files */,
 			);
 			path = SwiftPages;
