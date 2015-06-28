@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Roe-iB-8Kd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="lzl-wN-GI6">
+            <objects>
+                <navigationController id="Roe-iB-8Kd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EbM-VJ-SMV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="84J-fT-Qcc" kind="relationship" relationship="rootViewController" id="G1g-VN-UMx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8y-rt-hRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="-745"/>
+        </scene>
         <!--Swift Pages-->
+        <scene sceneID="HzF-vw-gzq">
+            <objects>
+                <viewController id="84J-fT-Qcc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bax-su-82y"/>
+                        <viewControllerLayoutGuide type="bottom" id="hL2-Os-rhM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gkl-H3-me8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-q2-mUb">
+                                <rect key="frame" x="253" y="241" width="94" height="30"/>
+                                <state key="normal" title="First Example">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="K0i-VU-KKK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41W-WW-7pj">
+                                <rect key="frame" x="242" y="328" width="117" height="30"/>
+                                <state key="normal" title="Second Example">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="pNr-Ne-GlT" kind="show" id="BC8-TC-uoO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Ipa-q2-mUb" secondAttribute="centerY" constant="44" id="GlA-E4-ttZ"/>
+                            <constraint firstAttribute="centerX" secondItem="41W-WW-7pj" secondAttribute="centerX" constant="-0.5" id="Kht-pY-jKu"/>
+                            <constraint firstAttribute="centerX" secondItem="Ipa-q2-mUb" secondAttribute="centerX" id="cxX-kp-H1m"/>
+                            <constraint firstAttribute="centerY" secondItem="41W-WW-7pj" secondAttribute="centerY" constant="-43" id="u8e-hJ-Xgq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Swift Pages" id="cI8-Ni-VKT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybi-Jk-VPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1177" y="-745"/>
+        </scene>
+        <!--First ExampleVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SwiftPages" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FirstExampleVC" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,7 +82,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="102"/>
+            <point key="canvasLocation" x="802" y="4"/>
+        </scene>
+        <!--Second ExampleVC-->
+        <scene sceneID="JGJ-6O-dFy">
+            <objects>
+                <viewController id="pNr-Ne-GlT" customClass="SecondExampleVC" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tWS-mh-uOS"/>
+                        <viewControllerLayoutGuide type="bottom" id="V2C-5s-2n9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zKe-Ev-gNb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5Q-fM-4th" customClass="TestView" customModule="SwiftPages" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="a5Q-fM-4th" firstAttribute="top" secondItem="zKe-Ev-gNb" secondAttribute="topMargin" constant="70" id="2Ty-Oh-GPj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a5Q-fM-4th" secondAttribute="trailing" constant="-16" id="RMB-uO-B3Y"/>
+                            <constraint firstItem="a5Q-fM-4th" firstAttribute="leading" secondItem="zKe-Ev-gNb" secondAttribute="leadingMargin" constant="-16" id="VQQ-JB-6M7"/>
+                            <constraint firstItem="V2C-5s-2n9" firstAttribute="top" secondItem="a5Q-fM-4th" secondAttribute="bottom" id="yg7-ek-G6u"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwv-vu-UIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1547" y="4"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="rKC-yU-oPj">
@@ -60,7 +151,6 @@
         <!--Demo CollectionVC-->
         <scene sceneID="KWe-Ku-8b4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwa-f5-6CX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController restorationIdentifier="SecondVC" storyboardIdentifier="SecondVC" id="PLv-70-roH" customClass="DemoCollectionVC" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QVr-A7-oZD"/>
@@ -98,8 +188,8 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dzE-QP-Bag">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="dzE-QP-Bag">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -117,6 +207,7 @@
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwa-f5-6CX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="844" y="815"/>
         </scene>
@@ -142,11 +233,21 @@
                                 <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFH-vV-94t">
+                                <rect key="frame" x="0.0" y="597" width="600" height="3"/>
+                                <color key="backgroundColor" red="0.87938456629999995" green="0.45230436029999999" blue="0.41184032580000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="l7G-yZ-cL0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="cYq-gF-ioz" secondAttribute="centerX" constant="-0.5" id="0zZ-Uj-Ipp"/>
                             <constraint firstAttribute="centerY" secondItem="cYq-gF-ioz" secondAttribute="centerY" id="Nqx-mY-NFx"/>
+                            <constraint firstItem="IwB-6p-Eeq" firstAttribute="top" secondItem="aFH-vV-94t" secondAttribute="bottom" id="cVU-g0-DP4"/>
+                            <constraint firstItem="aFH-vV-94t" firstAttribute="width" secondItem="Fpl-je-pl0" secondAttribute="width" id="g5L-Vb-OfS"/>
+                            <constraint firstAttribute="centerX" secondItem="aFH-vV-94t" secondAttribute="centerX" id="unM-Kv-kIh"/>
                         </constraints>
                     </view>
                 </viewController>

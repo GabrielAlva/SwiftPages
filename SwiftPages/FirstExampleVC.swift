@@ -1,0 +1,46 @@
+//
+//  FirstExampleVC.swift
+//  SwiftPages
+//
+//  Created by Gabriel Alvarado on 6/27/15.
+//  Copyright (c) 2015 Gabriel Alvarado. All rights reserved.
+//
+
+import UIKit
+
+class FirstExampleVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let SPView : TestView!
+        SPView = TestView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        
+        var buttonTitles : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
+        
+        var buttonImages : [UIImage] = [UIImage(named:"HorizontalLines.png")!,
+            UIImage(named:"SquareTriangle.png")!,
+            UIImage(named:"Circle.png")!]
+        
+        SPView.initializeWithVCIDsArrayAndButtonImagesArray(buttonTitles, buttonImagesArray: buttonImages)
+        
+        self.view.addSubview(SPView)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

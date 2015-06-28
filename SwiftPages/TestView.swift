@@ -1,5 +1,5 @@
 //
-//  SwiftPages.swift
+//  TestView.swift
 //  SwiftPages
 //
 //  Created by Gabriel Alvarado on 6/27/15.
@@ -8,21 +8,21 @@
 
 import UIKit
 
-class SwiftPages: UIView, UIScrollViewDelegate {
+class TestView: UIView, UIScrollViewDelegate {
 
     //Items variables
-    private var containerView: UIView!
-    private var scrollView: UIScrollView!
-    private var topBar: UIView!
-    private var animatedBar: UIView!
-    private var viewControllerIDs: [String] = []
-    private var buttonTitles: [String] = []
-    private var buttonImages: [UIImage] = []
-    private var pageViews: [UIViewController?] = []
+    private var containerView : UIView!
+    private var scrollView : UIScrollView!
+    private var topBar : UIView!
+    private var animatedBar : UIView!
+    private var viewControllerIDs : [String] = []
+    private var buttonTitles : [String] = []
+    private var buttonImages : [UIImage] = []
+    private var pageViews : [UIViewController?] = []
     
     //Container view position variables
-    private var xOrigin: CGFloat = 0
-    private var yOrigin: CGFloat = 64
+    private var xOrigin:CGFloat = 0
+    private var yOrigin:CGFloat = 64
     private var distanceToBottom: CGFloat = 0
     
     //Color variables
@@ -32,31 +32,18 @@ class SwiftPages: UIView, UIScrollViewDelegate {
     private var containerViewBackground = UIColor.clearColor()
     
     //Item size variables
-    private var topBarHeight: CGFloat = 52
-    private var animatedBarHeight: CGFloat = 3
+    private var topBarHeight : CGFloat = 52
+    private var animatedBarHeight : CGFloat = 3
     
     //Bar item variables
-    private var aeroEffectInTopBar: Bool = false //This gives the top bap a blurred effect, also overlayes the it over the VC's
-    private var buttonsWithImages: Bool = false
-    private var barShadow: Bool = true
-    private var buttonsTextFontAndSize: UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
+    private var aeroEffectInTopBar : Bool = false //This gives the top bap a blurred effect, also overlayes the it over the VC's
+    private var buttonsWithImages : Bool = false
+    private var BarShadow : Bool = true
+    private var buttonsTextFontAndSize : UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
-    // MARK: - Positions Of The Container View API -
-    func setOriginX (origin : CGFloat) { xOrigin = origin }
-    func setOriginY (origin : CGFloat) { yOrigin = origin }
-    func setDistanceToBottom (distance : CGFloat) { distanceToBottom = distance }
+    // MARK: - Positions Of The Container View API
     
     // MARK: - API's -
-    func setAnimatedBarColor (color : UIColor) { animatedBarColor = color }
-    func setTopBarBackground (color : UIColor) { topBarBackground = color }
-    func setButtonsTextColor (color : UIColor) { buttonsTextColor = color }
-    func setContainerViewBackground (color : UIColor) { containerViewBackground = color }
-    func setTopBarHeight (pointSize : CGFloat) { topBarHeight = pointSize}
-    func setAnimatedBarHeight (pointSize : CGFloat) { animatedBarHeight = pointSize}
-    func setButtonsTextFontAndSize (fontAndSize : UIFont) { buttonsTextFontAndSize = fontAndSize}
-    func enableAeroEffectInTopBar (boolValue : Bool) { aeroEffectInTopBar = boolValue}
-    func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
-    func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
     
     override func drawRect(rect: CGRect)
     {
@@ -89,7 +76,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
             //Create the blurred visual effect
             //You can choose between ExtraLight, Light and Dark
             topBar.backgroundColor = UIColor.clearColor()
-            let blurEffect: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+            let blurEffect : UIBlurEffect = UIBlurEffect(style : UIBlurEffectStyle.Light)
             let blurView = UIVisualEffectView(effect: blurEffect)
             blurView.frame = topBar.bounds
             blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -158,8 +145,8 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         animatedBar.backgroundColor = animatedBarColor
         containerView.addSubview(animatedBar)
         
-        //Add the bar shadow (set to true or false with the barShadow var)
-        if (barShadow) {
+        //Add the bar shadow (set to true or false with the BarShadow var)
+        if (BarShadow){
             let barShadowImageView = UIImageView(image: UIImage(named:"BarShadow.png")!)
             barShadowImageView.frame = CGRect(x: 0, y: topBarHeight, width: containerView.frame.size.width, height: 4)
             containerView.addSubview(barShadowImageView)
@@ -181,10 +168,8 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         loadVisiblePages()
     }
     
-    // MARK: - Initialization Functions -
     func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String])
     {
-        //Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonTitlesArray.count {
             viewControllerIDs = VCIDsArray
             buttonTitles = buttonTitlesArray
@@ -196,7 +181,6 @@ class SwiftPages: UIView, UIScrollViewDelegate {
     
     func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage])
     {
-        //Important - Images Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonImagesArray.count {
             viewControllerIDs = VCIDsArray
             buttonImages = buttonImagesArray
@@ -226,7 +210,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
             frame.origin.y = 0.0
             
             //Create the variable that will hold the VC being load
-            var newPageView: UIViewController
+            var newPageView:UIViewController
             
             //Look for the VC by its identifier in the storyboard and add it to the scrollview
             newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page]) as! UIViewController
@@ -238,8 +222,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func loadVisiblePages()
-    {
+    func loadVisiblePages() {
         // First, determine which page is currently visible
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
@@ -254,15 +237,14 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func barButtonAction(sender: UIButton?)
+    func barButtonAction(sender:UIButton?)
     {
-        var index: Int = sender!.tag
+        var index:Int = sender!.tag
         let pagesScrollViewSize = scrollView.frame.size
         [scrollView .setContentOffset(CGPointMake(pagesScrollViewSize.width * (CGFloat)(index), 0), animated: true)]
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView)
-    {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         // Load the pages that are now on screen
         loadVisiblePages()
         
@@ -271,5 +253,5 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         var offsetAddition = (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.1
         animatedBar.frame = CGRectMake((offsetAddition + (scrollView.contentOffset.x/(CGFloat)(viewControllerIDs.count))), animatedBar.frame.origin.y, animatedBar.frame.size.width, animatedBar.frame.size.height);
     }
-    
+
 }
