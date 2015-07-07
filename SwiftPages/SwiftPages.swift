@@ -97,25 +97,6 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
         containerView.addSubview(topBar)
         
-        // MARK: - View Controller ID Array -
-        if viewControllerIDs.count == 0 {
-            viewControllerIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
-        }
-        
-        // MARK: - Button Titles/Images Array -
-        //Important - Titles/Images Array must Have The Same Number Of Items As The viewControllerIDs Array
-        if buttonTitles.count == 0 {
-            buttonTitles = ["First", "Second", "Third", "Fourth", "Fifth"]
-        }
-        //Button images (Added if the buttonsWithImages var is set to true)
-        if buttonImages.count == 0 {
-            buttonImages = [UIImage(named:"Ovals.png")!,
-                UIImage(named:"VerticalLines.png")!,
-                UIImage(named:"HorizontalLines.png")!,
-                UIImage(named:"SquareTriangle.png")!,
-                UIImage(named:"Circle.png")!]
-        }
-        
         //Set the top bar buttons
         var buttonsXPosition: CGFloat = 0
         var buttonNumber = 0

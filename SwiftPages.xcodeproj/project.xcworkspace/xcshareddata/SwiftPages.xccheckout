@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>99FCDEAB-3F29-468A-99C6-66FE7C2B17B0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>SwiftPages</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>7AAB24F9FD743F130F51D539AD9B282651FF7354</key>
 		<string>https://github.com/GabrielAlva/SwiftPages</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SwiftPages.xcodeproj/project.xcworkspace</string>
+	<string>SwiftPages.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7AAB24F9FD743F130F51D539AD9B282651FF7354</key>

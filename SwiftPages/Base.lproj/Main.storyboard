@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Roe-iB-8Kd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Roe-iB-8Kd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -129,21 +129,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3e-vp-PU6">
-                                <rect key="frame" x="181" y="280" width="239" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-jw-LMW">
+                                <rect key="frame" x="194" y="268" width="212" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="239" id="9hU-4B-l6l"/>
-                                    <constraint firstAttribute="height" constant="40" id="OuD-5M-CEK"/>
+                                    <constraint firstAttribute="height" constant="63" id="fCV-Sx-mgP"/>
+                                    <constraint firstAttribute="width" constant="212" id="tGx-ah-cWr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="u3e-vp-PU6" secondAttribute="centerX" constant="-0.5" id="WL3-UW-xkd"/>
-                            <constraint firstAttribute="centerY" secondItem="u3e-vp-PU6" secondAttribute="centerY" id="n2k-K6-lKo"/>
+                            <constraint firstAttribute="centerX" secondItem="F0d-jw-LMW" secondAttribute="centerX" id="3Vg-bv-brf"/>
+                            <constraint firstAttribute="centerY" secondItem="F0d-jw-LMW" secondAttribute="centerY" constant="0.5" id="Oc4-dw-i2K"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -151,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="91" y="815"/>
         </scene>
-        <!--Demo CollectionVC-->
+        <!--View Controller-->
         <scene sceneID="KWe-Ku-8b4">
             <objects>
-                <viewController restorationIdentifier="SecondVC" storyboardIdentifier="SecondVC" id="PLv-70-roH" customClass="DemoCollectionVC" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SecondVC" storyboardIdentifier="SecondVC" id="PLv-70-roH" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QVr-A7-oZD"/>
                         <viewControllerLayoutGuide type="bottom" id="EGA-He-oZW"/>
@@ -163,50 +163,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qrv-4l-phb">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1.5" minimumInteritemSpacing="1.5" id="I1c-sq-B7A">
-                                    <size key="itemSize" width="123" height="123"/>
-                                    <size key="headerReferenceSize" width="0.0" height="52"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="1.5" minY="1.5" maxX="1.5" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="F4e-RU-dy7" customClass="CollectionViewCell" customModule="SwiftPages" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39d-T9-Zn5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="cellImage" destination="39d-T9-Zn5" id="ftK-PX-82F"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="dzE-QP-Bag">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionReusableView>
-                                <connections>
-                                    <outlet property="dataSource" destination="PLv-70-roH" id="Sol-kE-kus"/>
-                                    <outlet property="delegate" destination="PLv-70-roH" id="G1I-Mi-ZhK"/>
-                                </connections>
-                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mls-LU-lIL">
+                                <rect key="frame" x="194" y="268" width="212" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="cdV-1f-UTp"/>
+                                    <constraint firstAttribute="height" constant="63" id="h4P-3u-y70"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qrv-4l-phb" firstAttribute="top" secondItem="iLp-bg-doy" secondAttribute="topMargin" id="27h-WW-0rv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qrv-4l-phb" secondAttribute="trailing" constant="-16" id="5bk-eH-ALc"/>
-                            <constraint firstItem="Qrv-4l-phb" firstAttribute="leading" secondItem="iLp-bg-doy" secondAttribute="leadingMargin" constant="-16" id="R1m-tX-15C"/>
-                            <constraint firstItem="EGA-He-oZW" firstAttribute="top" secondItem="Qrv-4l-phb" secondAttribute="bottom" id="cdi-D9-9l0"/>
+                            <constraint firstAttribute="centerY" secondItem="mls-LU-lIL" secondAttribute="centerY" constant="0.5" id="8G4-wX-VDP"/>
+                            <constraint firstAttribute="centerX" secondItem="mls-LU-lIL" secondAttribute="centerX" id="bYj-Kg-IFw"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -226,16 +197,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYq-gF-ioz">
-                                <rect key="frame" x="181" y="280" width="239" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="9Ya-VM-bkB"/>
-                                    <constraint firstAttribute="width" constant="239" id="t9P-IM-xGy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFH-vV-94t">
                                 <rect key="frame" x="0.0" y="597" width="600" height="3"/>
                                 <color key="backgroundColor" red="0.87938456629999995" green="0.45230436029999999" blue="0.41184032580000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -243,13 +204,23 @@
                                     <constraint firstAttribute="height" constant="3" id="l7G-yZ-cL0"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av7-cS-fhI">
+                                <rect key="frame" x="194" y="268" width="212" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="Ti1-wh-n9W"/>
+                                    <constraint firstAttribute="width" constant="212" id="wyU-qQ-ITm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="cYq-gF-ioz" secondAttribute="centerX" constant="-0.5" id="0zZ-Uj-Ipp"/>
-                            <constraint firstAttribute="centerY" secondItem="cYq-gF-ioz" secondAttribute="centerY" id="Nqx-mY-NFx"/>
+                            <constraint firstAttribute="centerY" secondItem="Av7-cS-fhI" secondAttribute="centerY" constant="0.5" id="Ucs-Kb-IY5"/>
                             <constraint firstItem="IwB-6p-Eeq" firstAttribute="top" secondItem="aFH-vV-94t" secondAttribute="bottom" id="cVU-g0-DP4"/>
                             <constraint firstItem="aFH-vV-94t" firstAttribute="width" secondItem="Fpl-je-pl0" secondAttribute="width" id="g5L-Vb-OfS"/>
+                            <constraint firstAttribute="centerX" secondItem="Av7-cS-fhI" secondAttribute="centerX" id="kpE-NW-1Qc"/>
                             <constraint firstAttribute="centerX" secondItem="aFH-vV-94t" secondAttribute="centerX" id="unM-Kv-kIh"/>
                         </constraints>
                     </view>
@@ -270,21 +241,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fourth View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZD-hP-AHu">
-                                <rect key="frame" x="181" y="280" width="239" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fourth VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pn-fM-Fit">
+                                <rect key="frame" x="194" y="268" width="212" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Zcc-gu-VYS"/>
-                                    <constraint firstAttribute="width" constant="239" id="sEN-QH-JeN"/>
+                                    <constraint firstAttribute="width" constant="212" id="ajL-1U-WJy"/>
+                                    <constraint firstAttribute="height" constant="63" id="qbq-aW-YnL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="pZD-hP-AHu" secondAttribute="centerX" constant="-0.5" id="8gn-MB-LGn"/>
-                            <constraint firstAttribute="centerY" secondItem="pZD-hP-AHu" secondAttribute="centerY" id="Cg1-j4-ybS"/>
+                            <constraint firstAttribute="centerX" secondItem="2pn-fM-Fit" secondAttribute="centerX" id="WMS-fA-ynJ"/>
+                            <constraint firstAttribute="centerY" secondItem="2pn-fM-Fit" secondAttribute="centerY" constant="0.5" id="afN-fq-hUd"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -304,21 +275,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fifth View Controller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efd-8W-pIl">
-                                <rect key="frame" x="181" y="280" width="239" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fifth VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL7-Ly-0ye">
+                                <rect key="frame" x="194" y="268" width="212" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="6ou-ni-WhA"/>
-                                    <constraint firstAttribute="width" constant="239" id="qmk-eC-A4C"/>
+                                    <constraint firstAttribute="width" constant="212" id="ee4-kx-iSv"/>
+                                    <constraint firstAttribute="height" constant="63" id="pVe-BN-WIs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <color key="textColor" white="0.1912326389" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="efd-8W-pIl" secondAttribute="centerY" id="70Y-ic-rBi"/>
-                            <constraint firstAttribute="centerX" secondItem="efd-8W-pIl" secondAttribute="centerX" constant="-0.5" id="MmM-4H-eNm"/>
+                            <constraint firstAttribute="centerY" secondItem="FL7-Ly-0ye" secondAttribute="centerY" constant="0.5" id="2CB-5L-SDl"/>
+                            <constraint firstAttribute="centerX" secondItem="FL7-Ly-0ye" secondAttribute="centerX" id="lSN-cn-ZXU"/>
                         </constraints>
                     </view>
                 </viewController>

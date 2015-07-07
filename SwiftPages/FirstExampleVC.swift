@@ -16,11 +16,13 @@ class FirstExampleVC: UIViewController {
         let SPView : SwiftPages!
         SPView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
         
-        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
+        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         
-        var buttonImages : [UIImage] = [UIImage(named:"HorizontalLines.png")!,
-            UIImage(named:"SquareTriangle.png")!,
-            UIImage(named:"Circle.png")!]
+        var buttonImages : [UIImage] = [UIImage(named:"Home Icon.png")!,
+                                        UIImage(named:"Places Icon.png")!,
+                                        UIImage(named:"Grid Icon.png")!,
+                                        UIImage(named:"HorizontalLines.png")!,
+                                        UIImage(named:"Circle.png")!]
         
         SPView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
         

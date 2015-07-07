@@ -15,8 +15,8 @@ class SecondExampleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC"]
-        var buttonTitles : [String] = ["First", "Second", "Third"]
+        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
+        var buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
         swiftPagesView.setOriginY(0.0)
         swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
     }
