@@ -7,15 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64015D8A1B3766DC00A6B549 /* Ovals.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D891B3766DC00A6B549 /* Ovals.png */; };
-		64015D8C1B3766E400A6B549 /* VerticalLines.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8B1B3766E400A6B549 /* VerticalLines.png */; };
-		64015D8E1B3766EB00A6B549 /* HorizontalLines.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8D1B3766EB00A6B549 /* HorizontalLines.png */; };
-		64015D911B3766F500A6B549 /* Circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D8F1B3766F500A6B549 /* Circle.png */; };
-		64015D921B3766F500A6B549 /* SquareTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D901B3766F500A6B549 /* SquareTriangle.png */; };
 		64015D941B376C3400A6B549 /* BarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D931B376C3400A6B549 /* BarShadow.png */; };
-		642E5ECB1B4C96000048C6BC /* Home Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 642E5EC81B4C96000048C6BC /* Home Icon.png */; };
-		642E5ECC1B4C96000048C6BC /* Places Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 642E5EC91B4C96000048C6BC /* Places Icon.png */; };
-		642E5ECD1B4C96000048C6BC /* Grid Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 642E5ECA1B4C96000048C6BC /* Grid Icon.png */; };
+		642E5ECF1B4DFA540048C6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */; };
 		6467B2E91B3F7ADA0071A3FF /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B2E81B3F7ADA0071A3FF /* SwiftPages.swift */; };
 		6467B2EB1B3F939E0071A3FF /* FirstExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B2EA1B3F939E0071A3FF /* FirstExampleVC.swift */; };
 		6467B2ED1B3F93B40071A3FF /* SecondExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B2EC1B3F93B40071A3FF /* SecondExampleVC.swift */; };
@@ -24,6 +17,13 @@
 		6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6489B0351B0EDEEA009E6AA4 /* Images.xcassets */; };
 		6489B0391B0EDEEA009E6AA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6489B0371B0EDEEA009E6AA4 /* LaunchScreen.xib */; };
 		6489B0451B0EDEEA009E6AA4 /* SwiftPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6489B0441B0EDEEA009E6AA4 /* SwiftPagesTests.swift */; };
+		64E483971B4E0202009BE86A /* RAReorderableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E483961B4E0202009BE86A /* RAReorderableLayout.swift */; };
+		64E483991B4E0227009BE86A /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E483981B4E0227009BE86A /* VerticalViewController.swift */; };
+		64E483A91B4E14F4009BE86A /* LocationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A41B4E14F4009BE86A /* LocationIcon.png */; };
+		64E483AA1B4E14F4009BE86A /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A51B4E14F4009BE86A /* HomeIcon.png */; };
+		64E483AB1B4E14F4009BE86A /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A61B4E14F4009BE86A /* ListIcon.png */; };
+		64E483AC1B4E14F4009BE86A /* CollectionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A71B4E14F4009BE86A /* CollectionIcon.png */; };
+		64E483AD1B4E14F4009BE86A /* StarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A81B4E14F4009BE86A /* StarIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,15 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		64015D891B3766DC00A6B549 /* Ovals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ovals.png; sourceTree = "<group>"; };
-		64015D8B1B3766E400A6B549 /* VerticalLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VerticalLines.png; sourceTree = "<group>"; };
-		64015D8D1B3766EB00A6B549 /* HorizontalLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HorizontalLines.png; sourceTree = "<group>"; };
-		64015D8F1B3766F500A6B549 /* Circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circle.png; sourceTree = "<group>"; };
-		64015D901B3766F500A6B549 /* SquareTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareTriangle.png; sourceTree = "<group>"; };
 		64015D931B376C3400A6B549 /* BarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarShadow.png; sourceTree = "<group>"; };
-		642E5EC81B4C96000048C6BC /* Home Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home Icon.png"; sourceTree = "<group>"; };
-		642E5EC91B4C96000048C6BC /* Places Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Places Icon.png"; sourceTree = "<group>"; };
-		642E5ECA1B4C96000048C6BC /* Grid Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Grid Icon.png"; sourceTree = "<group>"; };
+		642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6467B2E81B3F7ADA0071A3FF /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
 		6467B2EA1B3F939E0071A3FF /* FirstExampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExampleVC.swift; sourceTree = "<group>"; };
 		6467B2EC1B3F93B40071A3FF /* SecondExampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondExampleVC.swift; sourceTree = "<group>"; };
@@ -58,6 +51,13 @@
 		6489B03E1B0EDEEA009E6AA4 /* SwiftPagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftPagesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6489B0431B0EDEEA009E6AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6489B0441B0EDEEA009E6AA4 /* SwiftPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPagesTests.swift; sourceTree = "<group>"; };
+		64E483961B4E0202009BE86A /* RAReorderableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAReorderableLayout.swift; sourceTree = "<group>"; };
+		64E483981B4E0227009BE86A /* VerticalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
+		64E483A41B4E14F4009BE86A /* LocationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationIcon.png; sourceTree = "<group>"; };
+		64E483A51B4E14F4009BE86A /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
+		64E483A61B4E14F4009BE86A /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListIcon.png; sourceTree = "<group>"; };
+		64E483A71B4E14F4009BE86A /* CollectionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CollectionIcon.png; sourceTree = "<group>"; };
+		64E483A81B4E14F4009BE86A /* StarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642E5ECF1B4DFA540048C6BC /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +85,15 @@
 				6467B2EF1B3FA3560071A3FF /* View Controllers */,
 			);
 			name = "Demo App Files";
+			sourceTree = "<group>";
+		};
+		642E5ED01B4DFA9E0048C6BC /* Collection View Classes */ = {
+			isa = PBXGroup;
+			children = (
+				64E483961B4E0202009BE86A /* RAReorderableLayout.swift */,
+				64E483981B4E0227009BE86A /* VerticalViewController.swift */,
+			);
+			name = "Collection View Classes";
 			sourceTree = "<group>";
 		};
 		6467B2EE1B3FA3170071A3FF /* Swift Pages */ = {
@@ -118,6 +128,7 @@
 		6467B2F21B3FA8B20071A3FF /* Demo Assets */ = {
 			isa = PBXGroup;
 			children = (
+				642E5ED01B4DFA9E0048C6BC /* Collection View Classes */,
 			);
 			name = "Demo Assets";
 			sourceTree = "<group>";
@@ -125,6 +136,7 @@
 		6489B0201B0EDEEA009E6AA4 = {
 			isa = PBXGroup;
 			children = (
+				642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */,
 				6489B02B1B0EDEEA009E6AA4 /* SwiftPages */,
 				6489B0411B0EDEEA009E6AA4 /* SwiftPagesTests */,
 				6489B02A1B0EDEEA009E6AA4 /* Products */,
@@ -154,15 +166,12 @@
 		6489B02C1B0EDEEA009E6AA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64015D891B3766DC00A6B549 /* Ovals.png */,
-				64015D8B1B3766E400A6B549 /* VerticalLines.png */,
-				64015D8D1B3766EB00A6B549 /* HorizontalLines.png */,
-				64015D901B3766F500A6B549 /* SquareTriangle.png */,
-				64015D8F1B3766F500A6B549 /* Circle.png */,
+				64E483A51B4E14F4009BE86A /* HomeIcon.png */,
+				64E483A41B4E14F4009BE86A /* LocationIcon.png */,
+				64E483A71B4E14F4009BE86A /* CollectionIcon.png */,
+				64E483A61B4E14F4009BE86A /* ListIcon.png */,
+				64E483A81B4E14F4009BE86A /* StarIcon.png */,
 				64015D931B376C3400A6B549 /* BarShadow.png */,
-				642E5EC81B4C96000048C6BC /* Home Icon.png */,
-				642E5EC91B4C96000048C6BC /* Places Icon.png */,
-				642E5ECA1B4C96000048C6BC /* Grid Icon.png */,
 				6489B02D1B0EDEEA009E6AA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -265,17 +274,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				642E5ECC1B4C96000048C6BC /* Places Icon.png in Resources */,
 				6489B0341B0EDEEA009E6AA4 /* Main.storyboard in Resources */,
-				64015D911B3766F500A6B549 /* Circle.png in Resources */,
-				642E5ECB1B4C96000048C6BC /* Home Icon.png in Resources */,
-				64015D8E1B3766EB00A6B549 /* HorizontalLines.png in Resources */,
-				64015D8A1B3766DC00A6B549 /* Ovals.png in Resources */,
-				64015D921B3766F500A6B549 /* SquareTriangle.png in Resources */,
-				642E5ECD1B4C96000048C6BC /* Grid Icon.png in Resources */,
-				64015D8C1B3766E400A6B549 /* VerticalLines.png in Resources */,
+				64E483AA1B4E14F4009BE86A /* HomeIcon.png in Resources */,
+				64E483AB1B4E14F4009BE86A /* ListIcon.png in Resources */,
+				64E483AC1B4E14F4009BE86A /* CollectionIcon.png in Resources */,
 				6489B0391B0EDEEA009E6AA4 /* LaunchScreen.xib in Resources */,
+				64E483A91B4E14F4009BE86A /* LocationIcon.png in Resources */,
 				64015D941B376C3400A6B549 /* BarShadow.png in Resources */,
+				64E483AD1B4E14F4009BE86A /* StarIcon.png in Resources */,
 				6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E483971B4E0202009BE86A /* RAReorderableLayout.swift in Sources */,
 				6467B2E91B3F7ADA0071A3FF /* SwiftPages.swift in Sources */,
+				64E483991B4E0227009BE86A /* VerticalViewController.swift in Sources */,
 				6467B2ED1B3F93B40071A3FF /* SecondExampleVC.swift in Sources */,
 				6467B2EB1B3F939E0071A3FF /* FirstExampleVC.swift in Sources */,
 				6489B02F1B0EDEEA009E6AA4 /* AppDelegate.swift in Sources */,
@@ -426,9 +434,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftPages/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -436,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftPages/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

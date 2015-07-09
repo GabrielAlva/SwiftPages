@@ -29,7 +29,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
     private var animatedBarColor = UIColor(red: 28/255, green: 95/255, blue: 185/255, alpha: 1)
     private var topBarBackground = UIColor.whiteColor()
     private var buttonsTextColor = UIColor.grayColor()
-    private var containerViewBackground = UIColor.clearColor()
+    private var containerViewBackground = UIColor.whiteColor()
     
     //Item size variables
     private var topBarHeight: CGFloat = 52

@@ -104,10 +104,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="a5Q-fM-4th" firstAttribute="top" secondItem="zKe-Ev-gNb" secondAttribute="topMargin" constant="64" id="2Ty-Oh-GPj"/>
+                            <constraint firstAttribute="centerX" secondItem="a5Q-fM-4th" secondAttribute="centerX" id="4Fq-Hm-ySB"/>
+                            <constraint firstAttribute="width" secondItem="a5Q-fM-4th" secondAttribute="width" id="Qnq-mb-oyH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a5Q-fM-4th" secondAttribute="trailing" constant="-16" id="RMB-uO-B3Y"/>
                             <constraint firstItem="a5Q-fM-4th" firstAttribute="leading" secondItem="zKe-Ev-gNb" secondAttribute="leadingMargin" constant="-16" id="VQQ-JB-6M7"/>
                             <constraint firstItem="V2C-5s-2n9" firstAttribute="top" secondItem="a5Q-fM-4th" secondAttribute="bottom" id="yg7-ek-G6u"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RMB-uO-B3Y"/>
+                                <exclude reference="VQQ-JB-6M7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="swiftPagesView" destination="a5Q-fM-4th" id="yFV-xm-QVO"/>
@@ -117,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="1547" y="4"/>
         </scene>
-        <!--View Controller-->
+        <!--Vertical View Controller-->
         <scene sceneID="rKC-yU-oPj">
             <objects>
-                <viewController restorationIdentifier="FirstVC" storyboardIdentifier="FirstVC" id="m4A-9B-3TT" sceneMemberID="viewController">
+                <viewController restorationIdentifier="FirstVC" storyboardIdentifier="FirstVC" id="m4A-9B-3TT" customClass="VerticalViewController" customModule="SwiftPages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hC9-ad-Wdk"/>
                         <viewControllerLayoutGuide type="bottom" id="Dc8-PR-Gdb"/>
@@ -129,23 +137,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-jw-LMW">
-                                <rect key="frame" x="194" y="268" width="212" height="63"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="fCV-Sx-mgP"/>
-                                    <constraint firstAttribute="width" constant="212" id="tGx-ah-cWr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UMw-4v-ANb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewLayout key="collectionViewLayout" id="Nc3-eC-WDH" customClass="RAReorderableLayout" customModule="SwiftPages" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="verticalCell" id="xMD-VG-IfS" customClass="RACollectionViewCell" customModule="SwiftPages" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="100" height="100"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="F0d-jw-LMW" secondAttribute="centerX" id="3Vg-bv-brf"/>
-                            <constraint firstAttribute="centerY" secondItem="F0d-jw-LMW" secondAttribute="centerY" constant="0.5" id="Oc4-dw-i2K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UMw-4v-ANb" secondAttribute="trailing" constant="-16" id="3X5-mu-UlQ"/>
+                            <constraint firstItem="Dc8-PR-Gdb" firstAttribute="top" secondItem="UMw-4v-ANb" secondAttribute="bottom" id="Dro-T0-cB5"/>
+                            <constraint firstItem="UMw-4v-ANb" firstAttribute="leading" secondItem="tem-95-PoR" secondAttribute="leadingMargin" constant="-16" id="Q8U-zY-qaJ"/>
+                            <constraint firstItem="UMw-4v-ANb" firstAttribute="top" secondItem="tem-95-PoR" secondAttribute="topMargin" id="VEx-LN-k3h"/>
+                            <constraint firstAttribute="centerX" secondItem="UMw-4v-ANb" secondAttribute="centerX" id="eAj-R5-vbg"/>
+                            <constraint firstItem="UMw-4v-ANb" firstAttribute="width" secondItem="tem-95-PoR" secondAttribute="width" id="jXW-wd-7Sw"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3X5-mu-UlQ"/>
+                                <exclude reference="Q8U-zY-qaJ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="UMw-4v-ANb" id="Q3e-Zy-gjo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k9e-og-8d1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,13 +225,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFH-vV-94t">
-                                <rect key="frame" x="0.0" y="597" width="600" height="3"/>
-                                <color key="backgroundColor" red="0.87938456629999995" green="0.45230436029999999" blue="0.41184032580000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="l7G-yZ-cL0"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av7-cS-fhI">
                                 <rect key="frame" x="194" y="268" width="212" height="63"/>
                                 <constraints>
@@ -218,10 +239,7 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Av7-cS-fhI" secondAttribute="centerY" constant="0.5" id="Ucs-Kb-IY5"/>
-                            <constraint firstItem="IwB-6p-Eeq" firstAttribute="top" secondItem="aFH-vV-94t" secondAttribute="bottom" id="cVU-g0-DP4"/>
-                            <constraint firstItem="aFH-vV-94t" firstAttribute="width" secondItem="Fpl-je-pl0" secondAttribute="width" id="g5L-Vb-OfS"/>
                             <constraint firstAttribute="centerX" secondItem="Av7-cS-fhI" secondAttribute="centerX" id="kpE-NW-1Qc"/>
-                            <constraint firstAttribute="centerX" secondItem="aFH-vV-94t" secondAttribute="centerX" id="unM-Kv-kIh"/>
                         </constraints>
                     </view>
                 </viewController>

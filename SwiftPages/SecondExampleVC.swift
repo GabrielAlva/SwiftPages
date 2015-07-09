@@ -18,6 +18,9 @@ class SecondExampleVC: UIViewController {
         var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         var buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
         swiftPagesView.setOriginY(0.0)
+        swiftPagesView.enableAeroEffectInTopBar(true)
+        swiftPagesView.setButtonsTextColor(UIColor.whiteColor())
+        swiftPagesView.setAnimatedBarColor(UIColor.whiteColor())
         swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
     }
 
