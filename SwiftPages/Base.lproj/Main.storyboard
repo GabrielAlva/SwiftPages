@@ -220,11 +220,11 @@
                                     <constraint firstAttribute="height" constant="63" id="h4P-3u-y70"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="mls-LU-lIL" secondAttribute="centerY" constant="0.5" id="8G4-wX-VDP"/>
                             <constraint firstAttribute="centerX" secondItem="mls-LU-lIL" secondAttribute="centerX" id="bYj-Kg-IFw"/>
