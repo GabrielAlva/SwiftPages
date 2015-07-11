@@ -24,6 +24,10 @@
 		64E483AB1B4E14F4009BE86A /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A61B4E14F4009BE86A /* ListIcon.png */; };
 		64E483AC1B4E14F4009BE86A /* CollectionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A71B4E14F4009BE86A /* CollectionIcon.png */; };
 		64E483AD1B4E14F4009BE86A /* StarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483A81B4E14F4009BE86A /* StarIcon.png */; };
+		64E483BA1B51CD8A009BE86A /* Example 1 Button Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483B81B51CD8A009BE86A /* Example 1 Button Image.png */; };
+		64E483BB1B51CD8A009BE86A /* Example 2 Button Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483B91B51CD8A009BE86A /* Example 2 Button Image.png */; };
+		64E483BE1B51D21F009BE86A /* Example 1 Button Image Touched.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483BC1B51D21F009BE86A /* Example 1 Button Image Touched.png */; };
+		64E483BF1B51D21F009BE86A /* Example 2 Button Image Touched.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E483BD1B51D21F009BE86A /* Example 2 Button Image Touched.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		64E483A61B4E14F4009BE86A /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListIcon.png; sourceTree = "<group>"; };
 		64E483A71B4E14F4009BE86A /* CollectionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CollectionIcon.png; sourceTree = "<group>"; };
 		64E483A81B4E14F4009BE86A /* StarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarIcon.png; sourceTree = "<group>"; };
+		64E483B81B51CD8A009BE86A /* Example 1 Button Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Example 1 Button Image.png"; sourceTree = "<group>"; };
+		64E483B91B51CD8A009BE86A /* Example 2 Button Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Example 2 Button Image.png"; sourceTree = "<group>"; };
+		64E483BC1B51D21F009BE86A /* Example 1 Button Image Touched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Example 1 Button Image Touched.png"; sourceTree = "<group>"; };
+		64E483BD1B51D21F009BE86A /* Example 2 Button Image Touched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Example 2 Button Image Touched.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +180,10 @@
 				64E483A61B4E14F4009BE86A /* ListIcon.png */,
 				64E483A81B4E14F4009BE86A /* StarIcon.png */,
 				64015D931B376C3400A6B549 /* BarShadow.png */,
+				64E483B81B51CD8A009BE86A /* Example 1 Button Image.png */,
+				64E483B91B51CD8A009BE86A /* Example 2 Button Image.png */,
+				64E483BC1B51D21F009BE86A /* Example 1 Button Image Touched.png */,
+				64E483BD1B51D21F009BE86A /* Example 2 Button Image Touched.png */,
 				6489B02D1B0EDEEA009E6AA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -275,14 +287,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				6489B0341B0EDEEA009E6AA4 /* Main.storyboard in Resources */,
+				64E483BE1B51D21F009BE86A /* Example 1 Button Image Touched.png in Resources */,
 				64E483AA1B4E14F4009BE86A /* HomeIcon.png in Resources */,
 				64E483AB1B4E14F4009BE86A /* ListIcon.png in Resources */,
 				64E483AC1B4E14F4009BE86A /* CollectionIcon.png in Resources */,
 				6489B0391B0EDEEA009E6AA4 /* LaunchScreen.xib in Resources */,
 				64E483A91B4E14F4009BE86A /* LocationIcon.png in Resources */,
+				64E483BF1B51D21F009BE86A /* Example 2 Button Image Touched.png in Resources */,
 				64015D941B376C3400A6B549 /* BarShadow.png in Resources */,
 				64E483AD1B4E14F4009BE86A /* StarIcon.png in Resources */,
 				6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */,
+				64E483BB1B51CD8A009BE86A /* Example 2 Button Image.png in Resources */,
+				64E483BA1B51CD8A009BE86A /* Example 1 Button Image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
