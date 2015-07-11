@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64015D941B376C3400A6B549 /* BarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 64015D931B376C3400A6B549 /* BarShadow.png */; };
 		642E5ECF1B4DFA540048C6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */; };
 		6467B2E91B3F7ADA0071A3FF /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B2E81B3F7ADA0071A3FF /* SwiftPages.swift */; };
 		6467B2EB1B3F939E0071A3FF /* FirstExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B2EA1B3F939E0071A3FF /* FirstExampleVC.swift */; };
@@ -41,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		64015D931B376C3400A6B549 /* BarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarShadow.png; sourceTree = "<group>"; };
 		642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6467B2E81B3F7ADA0071A3FF /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
 		6467B2EA1B3F939E0071A3FF /* FirstExampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExampleVC.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				64E483A71B4E14F4009BE86A /* CollectionIcon.png */,
 				64E483A61B4E14F4009BE86A /* ListIcon.png */,
 				64E483A81B4E14F4009BE86A /* StarIcon.png */,
-				64015D931B376C3400A6B549 /* BarShadow.png */,
 				64E483B81B51CD8A009BE86A /* Example 1 Button Image.png */,
 				64E483B91B51CD8A009BE86A /* Example 2 Button Image.png */,
 				64E483BC1B51D21F009BE86A /* Example 1 Button Image Touched.png */,
@@ -294,7 +291,6 @@
 				6489B0391B0EDEEA009E6AA4 /* LaunchScreen.xib in Resources */,
 				64E483A91B4E14F4009BE86A /* LocationIcon.png in Resources */,
 				64E483BF1B51D21F009BE86A /* Example 2 Button Image Touched.png in Resources */,
-				64015D941B376C3400A6B549 /* BarShadow.png in Resources */,
 				64E483AD1B4E14F4009BE86A /* StarIcon.png in Resources */,
 				6489B0361B0EDEEA009E6AA4 /* Images.xcassets in Resources */,
 				64E483BB1B51CD8A009BE86A /* Example 2 Button Image.png in Resources */,

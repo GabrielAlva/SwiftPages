@@ -15,8 +15,11 @@ class SecondExampleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Initiation
         var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         var buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
+        
+        //Sample customization
         swiftPagesView.setOriginY(0.0)
         swiftPagesView.enableAeroEffectInTopBar(true)
         swiftPagesView.setButtonsTextColor(UIColor.whiteColor())

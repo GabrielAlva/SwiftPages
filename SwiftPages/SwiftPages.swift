@@ -141,9 +141,12 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         
         //Add the bar shadow (set to true or false with the barShadow var)
         if (barShadow) {
-            let barShadowImageView = UIImageView(image: UIImage(named:"BarShadow.png")!)
-            barShadowImageView.frame = CGRect(x: 0, y: topBarHeight, width: containerView.frame.size.width, height: 4)
-            containerView.addSubview(barShadowImageView)
+            var shadowView = UIView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, 4))
+            var gradient: CAGradientLayer = CAGradientLayer()
+            gradient.frame = shadowView.bounds
+            gradient.colors = [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.28).CGColor, UIColor.clearColor().CGColor]
+            shadowView.layer.insertSublayer(gradient, atIndex: 0)
+            containerView.addSubview(shadowView)
         }
         
         let pageCount = viewControllerIDs.count
