@@ -6,14 +6,14 @@ A swift implementation a tabbed page-like layout just like Instagram's toggle be
 ## Features
 
 - A simple yet beautifully architected solution for management of paged-style view controllers.
-- Dynamic loading of view controllers, allowing handing of high amounts of data without compromising memory.
+- Dynamic loading of view controllers, allowing handling of high amounts of data without compromising memory.
 - Highly customisable, all items have clean API’s to change them to any appearance or size.
 - Can be sized and positioned anywhere within a view controller.
 - Extensively documented code for quick understanding.
 
 ## Installation
 
-### Installing with CocoaPods
+### CocoaPods
 
 ### Manual Installation
 
@@ -39,7 +39,7 @@ swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.
 ```
 
 ### Initialization
-SwiftPages can be initialize in one of two ways:
+SwiftPages can be initialized in one of two ways:
 
 **Initialize with images as buttons on the top bar:**
 <br />
