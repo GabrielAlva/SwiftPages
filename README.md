@@ -14,7 +14,11 @@
 - Can be sized and positioned anywhere within a view controller.
 - Made for iPhone and iPad.
 - Extensively documented code for quick understanding.
-
+<br />
+<p align="center">
+  <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/Swift%20Pages%20iPhone%20mockups.png"/>
+</p>
+<br />
 <h3 align="center">Installation</h3>
 ---
 
