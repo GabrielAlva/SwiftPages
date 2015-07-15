@@ -28,6 +28,13 @@
 
 ### CocoaPods
 
+SwiftPages is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "SwiftPages"
+```
+
 ### Manual Installation
 
 Just Include the SwiftPages.swift file found on the demo in your project, and you’re good to go!
