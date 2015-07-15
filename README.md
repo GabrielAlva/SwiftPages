@@ -1,5 +1,6 @@
-# SwiftPages
-A swift implementation a tabbed page-like layout just like Instagram's toggle between grid and list views.
+<p align="center">
+  <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/SwiftPages%20Header%20Image.png"/>
+</p>
 <br />
 <br>
 <p align="center">
