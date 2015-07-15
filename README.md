@@ -28,15 +28,14 @@ First create your SwiftPages instance, there are two ways to do it, as an **IBOo
 
 **As an IBOoutlet of a view of type SwiftPages from the storyboard**
 	
-... Place a UIView in your view controller and assign its constraints, make its class be of type SwiftPages. Then control drag to your view controller as an IBOutlet.
+Place a UIView in your view controller and assign its constraints, make its class be of type SwiftPages. Then control drag to your view controller as an IBOutlet.
 	
 **As a fully programmatic SwiftPages view.**
 
-...Declare it in the viewDidLoad function of your view controller:
-...```swift
+Declare it in the viewDidLoad function of your view controller:
+```swift
 let swiftPagesView : SwiftPages!
 ```
-
 ### Initialization
 
 
