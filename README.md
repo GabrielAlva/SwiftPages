@@ -1,12 +1,9 @@
 <p align="center">
   <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/SwiftPages%20Header%20Image.png"/>
 </p>
-<br />
-<br>
 <p align="center">
   <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/SwiftPagesSample.gif"/>
 </p>
-</br>
 
 <h3 align="center">Features</h3>
 ---
