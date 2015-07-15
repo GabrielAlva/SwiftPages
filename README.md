@@ -27,21 +27,22 @@ Using **SwiftPages** in your project is very simple and straightforward.
 First create your SwiftPages instance, there are two ways to do it, as an **IBOoutlet** of a view of type SwiftPages from the storyboard, or programmatically:
 
 **As an IBOoutlet of a view of type SwiftPages from the storyboard**
+<br />
 Place a UIView in your view controller and assign its constraints, make its class be of type SwiftPages. Then control drag to your view controller as an IBOutlet.
 	
 **As a fully programmatic SwiftPages view.**
-Declare it in the viewDidLoad function of your view controller:
+<br />
+Declare it in the viewDidLoad function of your view controller and set the desired position and size:
 ```swift
 let swiftPagesView : SwiftPages!
-```
-Now set the desired position and size:
-```swift
 swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
 ```
+
 ### Initialization
 SwiftPages can be initialize in one of two ways:
 
 **Initialize with images as buttons on the top bar**
+
 First create an array of strings, the strings will be the Storyboard ID's of the view controllers you would like to include:
 ```swift
 var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
