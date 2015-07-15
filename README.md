@@ -12,6 +12,7 @@
 - Dynamic loading of view controllers, allowing handling of high amounts of data without compromising memory.
 - Highly customisable, all items have clean API’s to change them to any appearance or size.
 - Can be sized and positioned anywhere within a view controller.
+- Made for iPhone and iPad.
 - Extensively documented code for quick understanding.
 
 <h3 align="center">Installation</h3>
