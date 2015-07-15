@@ -7,7 +7,7 @@ A swift implementation a tabbed page-like layout just like Instagram's toggle be
 </p>
 </br>
 
-<h3 align="center" style="font-family:HelveticaNeue-Light">Features</h3>
+<h3 align="center">Features</h3>
 ---
 
 - A simple yet beautifully architected solution for management of paged-style view controllers.
