@@ -19,6 +19,7 @@
   <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/Swift%20Pages%20iPhone%20mockups.png"/>
 </p>
 <br />
+
 <h3 align="center">Installation</h3>
 ---
 
