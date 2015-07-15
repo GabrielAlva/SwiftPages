@@ -7,7 +7,8 @@ A swift implementation a tabbed page-like layout just like Instagram's toggle be
 </p>
 </br>
 
-## Features
+<h3 align="center">Features</h3>
+---
 
 - A simple yet beautifully architected solution for management of paged-style view controllers.
 - Dynamic loading of view controllers, allowing handling of high amounts of data without compromising memory.
@@ -15,7 +16,8 @@ A swift implementation a tabbed page-like layout just like Instagram's toggle be
 - Can be sized and positioned anywhere within a view controller.
 - Extensively documented code for quick understanding.
 
-## Installation
+<h3 align="center">Installation</h3>
+---
 
 ### CocoaPods
 
