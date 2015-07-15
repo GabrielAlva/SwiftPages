@@ -41,8 +41,8 @@ swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.
 ### Initialization
 SwiftPages can be initialize in one of two ways:
 
-**Initialize with images as buttons on the top bar**
-
+**Initialize with images as buttons on the top bar:**
+<br />
 First create an array of strings, the strings will be the Storyboard ID's of the view controllers you would like to include:
 ```swift
 var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
@@ -60,7 +60,8 @@ Finally, use the `initializeWithVCIDsArrayAndButtonImagesArra` function with the
 swiftPagesView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
 ```
 
-**Initialize with text on buttons**
+**Initialize with text on buttons:**
+<br />
 First, alike with the image initialization, create an array of strings, the strings will be the Storyboard ID's of the view controllers you would like to include:
 ```swift
 var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
@@ -76,6 +77,37 @@ swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesA
 
 ## Customisation
 
+Once you have your `SwiftPages` instance you can customize the appearance of all item's using the class API's, to view the API list look for the `API's` Mark on the SwiftPages class. Below is a brief customization sample:
+```swift
+swiftPagesView.enableAeroEffectInTopBar(true)
+swiftPagesView.setButtonsTextColor(UIColor.whiteColor())
+swiftPagesView.setAnimatedBarColor(UIColor.whiteColor())
+```
+
 ## Example
 
+You can find a full example on usage and customization on the Xcode project attached to this repository.
+
 ## License
+
+The MIT License (MIT)
+
+**Copyright (c) 2015 Gabriel Alvarado (gabrielle.alva@gmail.com)**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
