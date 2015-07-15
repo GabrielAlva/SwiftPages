@@ -5,9 +5,10 @@
   <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/SwiftPagesSample.gif"/>
 </p>
 
-[![Pod Version](http://img.shields.io/cocoapods/v/SwiftPages.svg?style=flat)](http://cocoadocs.org/docsets/SwiftPages/)
-[![Pod Platform](http://img.shields.io/cocoapods/p/SwiftPages.svg?style=flat)](http://cocoadocs.org/docsets/SwiftPages/)
-[![Pod License](http://img.shields.io/cocoapods/l/SwiftPages.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![CI Status](http://img.shields.io/travis/GabrielAlva/SwiftPages.svg?style=flat)](https://travis-ci.org/GabrielAlva/SwiftPages)
+[![Version](https://img.shields.io/cocoapods/v/SwiftPages.svg?style=flat)](http://cocoapods.org/pods/SwiftPages)
+[![License](https://img.shields.io/cocoapods/l/SwiftPages.svg?style=flat)](http://cocoapods.org/pods/SwiftPages)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftPages.svg?style=flat)](http://cocoapods.org/pods/SwiftPages)
 
 <h3 align="center">Features</h3>
 ---
