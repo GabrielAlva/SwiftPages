@@ -26,17 +26,16 @@ Using **SwiftPages** in your project is very simple and straightforward.
 
 First create your SwiftPages instance, there are two ways to do it, as an **IBOoutlet** of a view of type SwiftPages from the storyboard, or programmatically:
 
-<dl>
-  <dt>As an IBOoutlet of a view of type SwiftPages from the storyboard</dt>
-  <dd>Place a UIView in your view controller and assign its constraints, make its class be of type SwiftPages. Then control drag to your view controller as an IBOutlet.
-</dd>
+**As an IBOoutlet of a view of type SwiftPages from the storyboard**
+	
+... Place a UIView in your view controller and assign its constraints, make its class be of type SwiftPages. Then control drag to your view controller as an IBOutlet.
+	
+**As a fully programmatic SwiftPages view.**
 
-  <dt>As a fully programmatic SwiftPages view.</dt>
-  <dd>Declare it in the viewDidLoad function of your view controller:
-```swift
+...Declare it in the viewDidLoad function of your view controller:
+...```swift
 let swiftPagesView : SwiftPages!
-```.</dd>
-</dl>
+```
 
 ### Initialization
 
