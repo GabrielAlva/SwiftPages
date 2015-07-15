@@ -25,7 +25,9 @@ A swift implementation a tabbed page-like layout just like Instagram's toggle be
 
 Just Include the SwiftPages.swift file found on the demo in your project, and you’re good to go!
 
-## Usage
+<h3 align="center">Usage</h3>
+---
+
 Using **SwiftPages** in your project is very simple and straightforward. 
 
 ### Create a SwiftPages Instance
@@ -81,7 +83,8 @@ Finally, use the `initializeWithVCIDsArrayAndButtonTitlesArra` function with the
 swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
 ```
 
-## Customisation
+<h3 align="center">Customisation</h3>
+---
 
 Once you have your `SwiftPages` instance you can customize the appearance of all item's using the class API's, to view the API list look for the `API's` Mark on the SwiftPages class. Below is a brief customization sample:
 ```swift
@@ -90,11 +93,13 @@ swiftPagesView.setButtonsTextColor(UIColor.whiteColor())
 swiftPagesView.setAnimatedBarColor(UIColor.whiteColor())
 ```
 
-## Example
+<h3 align="center">Example</h3>
+---
 
 You can find a full example on usage and customization on the Xcode project attached to this repository.
 
-## License
+<h3 align="center">License</h3>
+---
 
 The MIT License (MIT)
 
