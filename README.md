@@ -35,7 +35,7 @@ it, simply add the following line to your Podfile:
 pod "SwiftPages"
 ```
 
-### Manual Installation
+### Manual
 
 Just Include the SwiftPages.swift file found on the demo in your project, and you’re good to go!
 
