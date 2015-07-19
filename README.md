@@ -69,7 +69,7 @@ First create an array of strings, the strings will be the Storyboard ID's of the
 ```swift
 var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
 ```
-Then create an array of UIImages which will correlate in order to the VC ID's array created above, it also have the same number of items as the aforementioned array:
+Then create an array of UIImages which will correlate in order to the VC ID's array created above, it also has to have the same number of items as the aforementioned array:
 ```swift
 var buttonImages : [UIImage] = [UIImage(named:"HomeIcon.png")!,
                                         UIImage(named:"LocationIcon.png")!,
@@ -77,7 +77,7 @@ var buttonImages : [UIImage] = [UIImage(named:"HomeIcon.png")!,
                                         UIImage(named:"ListIcon.png")!,
                                         UIImage(named:"StarIcon.png")!]
 ```
-Finally, use the `initializeWithVCIDsArrayAndButtonImagesArra` function with the two arrays created:
+Finally, use the `initializeWithVCIDsArrayAndButtonImagesArray` function with the two arrays created:
 ```swift
 swiftPagesView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
 ```
@@ -92,7 +92,7 @@ Then create an array of titles which will correlate in order to the VC ID's arra
 ```swift
 var buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
 ```
-Finally, use the `initializeWithVCIDsArrayAndButtonTitlesArra` function with the two arrays created:
+Finally, use the `initializeWithVCIDsArrayAndButtonTitlesArray` function with the two arrays created:
 ```swift
 swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
 ```
