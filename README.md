@@ -59,6 +59,10 @@ Declare it in the viewDidLoad function of your view controller and set the desir
 let swiftPagesView : SwiftPages!
 swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
 ```
+Then, after the initialization (described below), add it as a subview on your view controller:
+```swift
+self.view.addSubview(swiftPagesView)
+```
 
 ### Initialization
 SwiftPages can be initialized in one of two ways:
