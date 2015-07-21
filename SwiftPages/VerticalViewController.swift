@@ -35,6 +35,12 @@ class VerticalViewController: UIViewController, RAReorderableLayoutDelegate, RAR
         }
     }
     
+    
+     func scrollViewDidScroll(scrollView: UIScrollView) // any offset changes
+    {
+        self.swiftPages.didScrollViewInPage(scrollView)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.collectionView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0)

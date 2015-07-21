@@ -8,6 +8,21 @@
 
 import UIKit
 
+private var swiftPagesAssociationKey: UInt8 = 0
+
+extension UIViewController {
+    var swiftPages: SwiftPages! {
+        get {
+            return objc_getAssociatedObject(self, &swiftPagesAssociationKey) as? SwiftPages
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &swiftPagesAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+        }
+    }
+}
+
+
+
 class SwiftPages: UIView, UIScrollViewDelegate {
 
     //Items variables
@@ -214,6 +229,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
             
             //Look for the VC by its identifier in the storyboard and add it to the scrollview
             newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page]) as! UIViewController
+            newPageView.swiftPages = self
             newPageView.view.frame = frame
             scrollView.addSubview(newPageView.view)
             
@@ -254,6 +270,43 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         //The offset addition is based on the width of the animated bar (button width times 0.8)
         var offsetAddition = (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.1
         animatedBar.frame = CGRectMake((offsetAddition + (scrollView.contentOffset.x/(CGFloat)(viewControllerIDs.count))), animatedBar.frame.origin.y, animatedBar.frame.size.width, animatedBar.frame.size.height);
+    }
+    
+    func didScrollViewInPage(scrollView:UIScrollView){
+        
+        let offset = scrollView.contentOffset
+        println(offset)
+        let margin = 60.0 + self.topBarHeight + 20
+        
+        let statusBarWindow = UIApplication.sharedApplication().valueForKey("statusBarWindow") as! UIWindow
+        var statusFrame = statusBarWindow.frame
+        let mainWindow = UIApplication.sharedApplication().keyWindow
+        
+        var mainFrame = mainWindow!.frame
+            
+        
+        
+        if offset.y < margin && offset.y > 0{
+            
+            statusFrame.origin.y = -1 * offset.y
+            
+            mainFrame.origin.y = -1 * offset.y
+            
+        }
+        else{
+            if offset.y > 0{
+                statusFrame.origin.y = -1 * margin
+                mainFrame.origin.y = -1 * margin
+            }
+            else{
+                statusFrame.origin.y = 0
+                mainFrame.origin.y = 0
+            }
+            
+        }
+        
+        statusBarWindow.frame = statusFrame
+        mainWindow?.frame = mainFrame
     }
     
 }
