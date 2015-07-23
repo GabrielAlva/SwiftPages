@@ -99,7 +99,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.3803921569" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -179,19 +179,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="UMw-4v-ANb" secondAttribute="trailing" constant="-16" id="3X5-mu-UlQ"/>
-                            <constraint firstItem="Dc8-PR-Gdb" firstAttribute="top" secondItem="UMw-4v-ANb" secondAttribute="bottom" id="Dro-T0-cB5"/>
-                            <constraint firstItem="UMw-4v-ANb" firstAttribute="leading" secondItem="tem-95-PoR" secondAttribute="leadingMargin" constant="-16" id="Q8U-zY-qaJ"/>
-                            <constraint firstItem="UMw-4v-ANb" firstAttribute="top" secondItem="tem-95-PoR" secondAttribute="topMargin" id="VEx-LN-k3h"/>
-                            <constraint firstAttribute="centerX" secondItem="UMw-4v-ANb" secondAttribute="centerX" id="eAj-R5-vbg"/>
-                            <constraint firstItem="UMw-4v-ANb" firstAttribute="width" secondItem="tem-95-PoR" secondAttribute="width" id="jXW-wd-7Sw"/>
+                            <constraint firstAttribute="height" secondItem="UMw-4v-ANb" secondAttribute="height" id="MLO-Ov-wxx"/>
+                            <constraint firstItem="UMw-4v-ANb" firstAttribute="leading" secondItem="tem-95-PoR" secondAttribute="leading" id="WPf-j2-XaL"/>
+                            <constraint firstItem="UMw-4v-ANb" firstAttribute="top" secondItem="tem-95-PoR" secondAttribute="top" id="ZFv-Rx-2iG"/>
+                            <constraint firstAttribute="width" secondItem="UMw-4v-ANb" secondAttribute="width" id="zDi-6A-jKE"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3X5-mu-UlQ"/>
-                                <exclude reference="Q8U-zY-qaJ"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="UMw-4v-ANb" id="Q3e-Zy-gjo"/>
