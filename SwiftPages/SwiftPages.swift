@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwiftPages: UIView, UIScrollViewDelegate {
+public class SwiftPages: UIView, UIScrollViewDelegate {
 
     //Items variables
     private var containerView: UIView!
@@ -42,23 +42,23 @@ class SwiftPages: UIView, UIScrollViewDelegate {
     private var buttonsTextFontAndSize: UIFont = UIFont(name: "HelveticaNeue-Light", size: 20)!
     
     // MARK: - Positions Of The Container View API -
-    func setOriginX (origin : CGFloat) { xOrigin = origin }
-    func setOriginY (origin : CGFloat) { yOrigin = origin }
-    func setDistanceToBottom (distance : CGFloat) { distanceToBottom = distance }
+    public func setOriginX (origin : CGFloat) { xOrigin = origin }
+    public func setOriginY (origin : CGFloat) { yOrigin = origin }
+    public func setDistanceToBottom (distance : CGFloat) { distanceToBottom = distance }
     
     // MARK: - API's -
-    func setAnimatedBarColor (color : UIColor) { animatedBarColor = color }
-    func setTopBarBackground (color : UIColor) { topBarBackground = color }
-    func setButtonsTextColor (color : UIColor) { buttonsTextColor = color }
-    func setContainerViewBackground (color : UIColor) { containerViewBackground = color }
-    func setTopBarHeight (pointSize : CGFloat) { topBarHeight = pointSize}
-    func setAnimatedBarHeight (pointSize : CGFloat) { animatedBarHeight = pointSize}
-    func setButtonsTextFontAndSize (fontAndSize : UIFont) { buttonsTextFontAndSize = fontAndSize}
-    func enableAeroEffectInTopBar (boolValue : Bool) { aeroEffectInTopBar = boolValue}
-    func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
-    func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
+    public func setAnimatedBarColor (color : UIColor) { animatedBarColor = color }
+    public func setTopBarBackground (color : UIColor) { topBarBackground = color }
+    public func setButtonsTextColor (color : UIColor) { buttonsTextColor = color }
+    public func setContainerViewBackground (color : UIColor) { containerViewBackground = color }
+    public func setTopBarHeight (pointSize : CGFloat) { topBarHeight = pointSize}
+    public func setAnimatedBarHeight (pointSize : CGFloat) { animatedBarHeight = pointSize}
+    public func setButtonsTextFontAndSize (fontAndSize : UIFont) { buttonsTextFontAndSize = fontAndSize}
+    public func enableAeroEffectInTopBar (boolValue : Bool) { aeroEffectInTopBar = boolValue}
+    public func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
+    public func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
     
-    override func drawRect(rect: CGRect)
+    override public func drawRect(rect: CGRect)
     {
         // MARK: - Size Of The Container View -
         var pagesContainerHeight = self.frame.height - yOrigin - distanceToBottom
@@ -166,7 +166,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
     }
     
     // MARK: - Initialization Functions -
-    func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String])
+    public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String])
     {
         //Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonTitlesArray.count {
@@ -178,7 +178,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage])
+    public func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage])
     {
         //Important - Images Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonImagesArray.count {
@@ -190,7 +190,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func loadPage(page: Int)
+    public func loadPage(page: Int)
     {
         if page < 0 || page >= viewControllerIDs.count {
             // If it's outside the range of what you have to display, then do nothing
@@ -222,7 +222,7 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func loadVisiblePages()
+    public func loadVisiblePages()
     {
         // First, determine which page is currently visible
         let pageWidth = scrollView.frame.size.width
@@ -238,14 +238,14 @@ class SwiftPages: UIView, UIScrollViewDelegate {
         }
     }
     
-    func barButtonAction(sender: UIButton?)
+    public func barButtonAction(sender: UIButton?)
     {
         var index: Int = sender!.tag
         let pagesScrollViewSize = scrollView.frame.size
         [scrollView .setContentOffset(CGPointMake(pagesScrollViewSize.width * (CGFloat)(index), 0), animated: true)]
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    public func scrollViewDidScroll(scrollView: UIScrollView)
     {
         // Load the pages that are now on screen
         loadVisiblePages()
