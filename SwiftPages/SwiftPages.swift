@@ -92,7 +92,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             let blurEffect: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
             let blurView = UIVisualEffectView(effect: blurEffect)
             blurView.frame = topBar.bounds
-            blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            blurView.translatesAutoresizingMaskIntoConstraints = false
             topBar.addSubview(blurView)
         }
         containerView.addSubview(topBar)
@@ -174,7 +174,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             buttonTitles = buttonTitlesArray
             buttonsWithImages = false
         } else {
-            println("Initilization failed, the VC ID array count does not match the button titles array count.")
+            print("Initilization failed, the VC ID array count does not match the button titles array count.")
         }
     }
     
@@ -186,7 +186,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             buttonImages = buttonImagesArray
             buttonsWithImages = true
         } else {
-            println("Initilization failed, the VC ID array count does not match the button images array count.")
+            print("Initilization failed, the VC ID array count does not match the button images array count.")
         }
     }
     
@@ -203,7 +203,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             // Do nothing. The view is already loaded.
         } else
         {
-            println("Loading Page \(page)")
+            print("Loading Page \(page)")
             //The pageView instance is nil, create the page
             var frame = scrollView.bounds
             frame.origin.x = frame.size.width * CGFloat(page)

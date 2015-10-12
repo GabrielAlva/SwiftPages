@@ -44,8 +44,8 @@ class VerticalViewController: UIViewController, RAReorderableLayoutDelegate, RAR
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let screenWidth = CGRectGetWidth(UIScreen.mainScreen().bounds)
-        let threePiecesWidth = floor(screenWidth / 3.0 - 1.0)
-        let twoPiecesWidth = floor(screenWidth / 2.0 - 1.0)
+        let threePiecesWidth = floor(screenWidth / 3.0 - ((2.0 / 3) * 2))
+        let twoPiecesWidth = floor(screenWidth / 2.0 - (2.0 / 2))
         if indexPath.section == 0 {
             return CGSizeMake(threePiecesWidth, threePiecesWidth)
         }else {
@@ -54,11 +54,11 @@ class VerticalViewController: UIViewController, RAReorderableLayoutDelegate, RAR
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+        return 2.0
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+        return 2.0
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -137,7 +137,7 @@ class RACollectionViewCell: UICollectionViewCell {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configure()
     }
@@ -151,12 +151,12 @@ class RACollectionViewCell: UICollectionViewCell {
     
     private func configure() {
         self.imageView = UIImageView()
-        self.imageView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.imageView.contentMode = UIViewContentMode.ScaleAspectFill
         self.addSubview(self.imageView)
         
         self.hilightedCover = UIView()
-        self.hilightedCover.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.hilightedCover.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.hilightedCover.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.hilightedCover.hidden = true
         self.addSubview(self.hilightedCover)
@@ -174,6 +174,6 @@ class RACollectionViewCell: UICollectionViewCell {
         self.gradientLayer!.colors = [subColor, mainColor]
         self.gradientLayer!.locations = [0, 1]
         
-        gradientView.layer.addSublayer(self.gradientLayer)
+        gradientView.layer.addSublayer(self.gradientLayer!)
     }
 }
