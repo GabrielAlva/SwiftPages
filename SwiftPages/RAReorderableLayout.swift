@@ -33,19 +33,19 @@ import UIKit
 
 public class RAReorderableLayout: UICollectionViewFlowLayout {
     
-    private enum direction {
-        case toTop
-        case toEnd
-        case stay
+    private enum ScrollDirection {
+        case Upward
+        case Downward
+        case Anchor
         
         private func scrollValue(speedValue speedValue: CGFloat, percentage: CGFloat) -> CGFloat {
             var value: CGFloat = 0.0
             switch self {
-            case toTop:
+            case .Upward:
                 value = -speedValue
-            case toEnd:
+            case .Downward:
                 value = speedValue
-            case .stay:
+            case .Anchor:
                 return 0
             }
             
@@ -78,7 +78,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     
     private var panGesture: UIPanGestureRecognizer?
     
-    private var continuousScrollDirection = direction.stay
+    private var continuousScrollDirection = ScrollDirection.Anchor
     
     private var cellFakeView: RACellFakeView?
     
@@ -218,7 +218,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     }
     
     private func invalidateDisplayLink() {
-        continuousScrollDirection = .stay
+        continuousScrollDirection = .Anchor
         displayLink?.invalidate()
         displayLink = nil
     }
@@ -240,10 +240,10 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         let fakeCellEndEdge = self.fakeCellEndEdge
         
         if  fakeCellTopEdge <= offset + paddingTop + trigerInsetTop {
-            self.continuousScrollDirection = .toTop
+            self.continuousScrollDirection = .Upward
             self.setUpDisplayLink()
         } else if fakeCellEndEdge >= offset + length - paddingEnd - trigerInsetEnd {
-            self.continuousScrollDirection = .toEnd
+            self.continuousScrollDirection = .Downward
             self.setUpDisplayLink()
         } else {
             self.invalidateDisplayLink()
@@ -339,14 +339,16 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         
         var percentage: CGFloat = 0
         
-        if self.continuousScrollDirection == .toTop {
-            if let fakeCellEdge = self.fakeCellTopEdge {
+        switch continuousScrollDirection {
+        case .Upward:
+            if let fakeCellEdge = fakeCellTopEdge {
                 percentage = 1.0 - ((fakeCellEdge - (offset + trigerPaddingTop)) / trigerInsetTop)
             }
-        }else if self.continuousScrollDirection == .toEnd {
-            if let fakeCellEdge = self.fakeCellEndEdge {
+        case .Downward:
+            if let fakeCellEdge = fakeCellEndEdge {
                 percentage = 1.0 - (((insetTop + offsetEnd - paddingEnd) - (fakeCellEdge + insetTop)) / trigerInsetEnd)
             }
+        case .Anchor: ()
         }
         
         // 0 <= percentage <= 1.0
