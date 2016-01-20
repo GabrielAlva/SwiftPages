@@ -213,7 +213,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             var newPageView: UIViewController
             
             //Look for the VC by its identifier in the storyboard and add it to the scrollview
-            newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page]) as! UIViewController
+            newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page])
             newPageView.view.frame = frame
             scrollView.addSubview(newPageView.view)
             
