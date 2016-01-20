@@ -142,9 +142,9 @@
 		6489B0201B0EDEEA009E6AA4 = {
 			isa = PBXGroup;
 			children = (
-				642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */,
 				6489B02B1B0EDEEA009E6AA4 /* SwiftPages */,
 				6489B0411B0EDEEA009E6AA4 /* SwiftPagesTests */,
+				6B9F62431C4F868F005DD60F /* Frameworks */,
 				6489B02A1B0EDEEA009E6AA4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -201,6 +201,14 @@
 				6489B0431B0EDEEA009E6AA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6B9F62431C4F868F005DD60F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				642E5ECE1B4DFA540048C6BC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
