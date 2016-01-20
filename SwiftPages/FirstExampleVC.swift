@@ -18,8 +18,8 @@ class FirstExampleVC: UIViewController {
         swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
         
         //Initiation
-        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
-        var buttonImages : [UIImage] = [UIImage(named:"HomeIcon.png")!,
+        let VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
+        let buttonImages : [UIImage] = [UIImage(named:"HomeIcon.png")!,
                                         UIImage(named:"LocationIcon.png")!,
                                         UIImage(named:"CollectionIcon.png")!,
                                         UIImage(named:"ListIcon.png")!,

@@ -61,8 +61,8 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
     override public func drawRect(rect: CGRect)
     {
         // MARK: - Size Of The Container View -
-        var pagesContainerHeight = self.frame.height - yOrigin - distanceToBottom
-        var pagesContainerWidth = self.frame.width
+        let pagesContainerHeight = self.frame.height - yOrigin - distanceToBottom
+        let pagesContainerWidth = self.frame.width
         
         //Set the containerView, every item is constructed relative to this view
         containerView = UIView(frame: CGRectMake(xOrigin, yOrigin, pagesContainerWidth, pagesContainerHeight))
@@ -141,8 +141,8 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         
         //Add the bar shadow (set to true or false with the barShadow var)
         if (barShadow) {
-            var shadowView = UIView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, 4))
-            var gradient: CAGradientLayer = CAGradientLayer()
+            let shadowView = UIView(frame: CGRectMake(0, topBarHeight, containerView.frame.size.width, 4))
+            let gradient: CAGradientLayer = CAGradientLayer()
             gradient.frame = shadowView.bounds
             gradient.colors = [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.28).CGColor, UIColor.clearColor().CGColor]
             shadowView.layer.insertSublayer(gradient, atIndex: 0)
@@ -240,7 +240,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
     
     public func barButtonAction(sender: UIButton?)
     {
-        var index: Int = sender!.tag
+        let index: Int = sender!.tag
         let pagesScrollViewSize = scrollView.frame.size
         [scrollView .setContentOffset(CGPointMake(pagesScrollViewSize.width * (CGFloat)(index), 0), animated: true)]
     }
@@ -252,7 +252,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         
         //The calculations for the animated bar's movements
         //The offset addition is based on the width of the animated bar (button width times 0.8)
-        var offsetAddition = (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.1
+        let offsetAddition = (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.1
         animatedBar.frame = CGRectMake((offsetAddition + (scrollView.contentOffset.x/(CGFloat)(viewControllerIDs.count))), animatedBar.frame.origin.y, animatedBar.frame.size.width, animatedBar.frame.size.height);
     }
     

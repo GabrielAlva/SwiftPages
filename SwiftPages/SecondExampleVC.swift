@@ -16,8 +16,8 @@ class SecondExampleVC: UIViewController {
         super.viewDidLoad()
 
         //Initiation
-        var VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
-        var buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
+        let VCIDs : [String] = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
+        let buttonTitles : [String] = ["Home", "Places", "Photos", "List", "Tags"]
         
         //Sample customization
         swiftPagesView.setOriginY(0.0)
