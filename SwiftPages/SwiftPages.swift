@@ -8,10 +8,18 @@
 
 import UIKit
 
+// protocol delegate
+protocol SwiftPagesDelegate {
+    func SwiftPagesCurrentPageNumber(currentIndex: Int)
+}
+
 
 // MARK: - SwiftPages
 
 public class SwiftPages: UIView {
+    // current page index and delegate
+    var currentIndex: Int = 0
+    var delegate : SwiftPagesDelegate?
     
     // Items variables
     private var containerView: UIView!
@@ -219,6 +227,12 @@ public class SwiftPages: UIView {
         // First, determine which page is currently visible
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+        
+        // make sure the delegate method called once
+        if currentIndex != page {
+            currentIndex = page;
+            self.delegate?.SwiftPagesCurrentPageNumber(currentIndex)
+        }
         
         // Work out which pages you want to load
         let firstPage = page - 1
