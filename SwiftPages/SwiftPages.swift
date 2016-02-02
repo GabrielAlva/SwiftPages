@@ -60,6 +60,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
     
     override public func drawRect(rect: CGRect)
     {
+        print("Entered the drawRect function")
         // MARK: - Size Of The Container View -
         var pagesContainerHeight = self.frame.height - yOrigin - distanceToBottom
         var pagesContainerWidth = self.frame.width
@@ -80,7 +81,11 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.contentOffset = CGPointMake(0, 0)
         containerView.addSubview(scrollView)
+        
+        //let insets : UIEdgeInsets = UIEdgeInsetsMake(topBarHeight, 0, 0, 0)
+        //scrollView.contentInset = insets
         
         //Set the top bar
         topBar = UIView(frame: CGRectMake(0, 0, containerView.frame.size.width, topBarHeight))
@@ -254,6 +259,16 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         //The offset addition is based on the width of the animated bar (button width times 0.8)
         var offsetAddition = (containerView.frame.size.width/(CGFloat)(viewControllerIDs.count))*0.1
         animatedBar.frame = CGRectMake((offsetAddition + (scrollView.contentOffset.x/(CGFloat)(viewControllerIDs.count))), animatedBar.frame.origin.y, animatedBar.frame.size.width, animatedBar.frame.size.height);
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        print("Entered the init function")
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        print("Entered the init coder function")
     }
     
 }

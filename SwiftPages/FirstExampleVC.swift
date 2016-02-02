@@ -12,6 +12,8 @@ class FirstExampleVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
 
         //Instantiation and the setting of the size and position
         let swiftPagesView : SwiftPages!
