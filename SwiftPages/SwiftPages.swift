@@ -61,12 +61,9 @@ public class SwiftPages: UIView {
     public func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
     public func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
     
-    override public func drawRect(rect: CGRect)
-    {
-        print("Entered the drawRect function")
-        // MARK: - Size Of The Container View -
-        var pagesContainerHeight = self.frame.height - yOrigin - distanceToBottom
-        var pagesContainerWidth = self.frame.width
+    override public func drawRect(rect: CGRect) {
+        let pagesContainerHeight = frame.height - yOrigin - distanceToBottom
+        let pagesContainerWidth = frame.width
         
         // Set the containerView, every item is constructed relative to this view
         containerView = UIView(frame: CGRect(x: xOrigin, y: yOrigin, width: pagesContainerWidth, height: pagesContainerHeight))
@@ -87,11 +84,8 @@ public class SwiftPages: UIView {
         scrollView.contentOffset = CGPointMake(0, 0)
         containerView.addSubview(scrollView)
         
-        //let insets : UIEdgeInsets = UIEdgeInsetsMake(topBarHeight, 0, 0, 0)
-        //scrollView.contentInset = insets
-        
-        //Set the top bar
-        topBar = UIView(frame: CGRectMake(0, 0, containerView.frame.size.width, topBarHeight))
+        // Set the top bar
+        topBar = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight))
         topBar.backgroundColor = topBarBackground
         
         if aeroEffectInTopBar {
@@ -260,14 +254,14 @@ extension SwiftPages: UIScrollViewDelegate {
         animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / (CGFloat)(viewControllerIDs.count))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        print("Entered the init function")
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        print("Entered the init coder function")
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        print("Entered the init function")
+//    }
+//    
+//    required public init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        print("Entered the init coder function")
+//    }
     
 }

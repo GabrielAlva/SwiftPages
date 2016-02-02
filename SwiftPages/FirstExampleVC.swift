@@ -19,9 +19,6 @@ class FirstExampleVC: UIViewController {
         let swiftPagesView : SwiftPages!
         swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
         
-        // Instantiation and the setting of the size and position
-        let swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        
         // Initiation
         let VCIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         let buttonImages = [
