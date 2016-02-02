@@ -81,6 +81,7 @@ public class SwiftPages: UIView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         containerView.addSubview(scrollView)
         
         // Set the top bar

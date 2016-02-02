@@ -13,8 +13,10 @@ class FirstExampleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
+        
         // Instantiation and the setting of the size and position
-        let swiftPagesView = SwiftPages(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        let swiftPagesView = SwiftPages(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
         // Initiation
         let VCIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
