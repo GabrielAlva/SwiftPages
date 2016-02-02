@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/GabrielAlva/SwiftPages.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://github.com/GabrielAlva'
 
-  s.platform     = :ios, '8.0'
-  s.requires_arc = true
+  s.platform         = :ios, '8.0'
+  s.requires_arc     = true
 
-  s.source_files = 'Pod/Classes/*.{swift}'
+  s.source_files     = 'SwiftPages/SwiftPages.swift'
 end
