@@ -133,15 +133,6 @@ public class SwiftPages: UIView {
         topBar.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(topBar)
         
-//        //Add the constraints to the scrollview.
-//        if #available(iOS 9.0, *) {
-//            let topBarLeadingConstraint = topBar.leadingAnchor.constraintEqualToAnchor(containerView.leadingAnchor)
-//            let topBarTrailingConstraint = topBar.trailingAnchor.constraintEqualToAnchor(containerView.trailingAnchor)
-//            let topBarTopConstraint = topBar.topAnchor.constraintEqualToAnchor(containerView.topAnchor)
-//            let topBarHeightConstraint = topBar.heightAnchor.constraintEqualToAnchor(topBar.heightAnchor)
-//            NSLayoutConstraint.activateConstraints([topBarLeadingConstraint, topBarTrailingConstraint, topBarTopConstraint, topBarHeightConstraint])
-//        }
-        
         // Set the top bar buttons
         // Check to see if the top bar will be created with images ot text
         if buttonsWithImages {
@@ -157,7 +148,6 @@ public class SwiftPages: UIView {
                 barButton.tag = index
                 barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
                 topBar.addSubview(barButton)
-                
                 barButtons.append(barButton)
                 
                 buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
@@ -176,7 +166,6 @@ public class SwiftPages: UIView {
                 barButton.tag = index
                 barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
                 topBar.addSubview(barButton)
-                
                 barButtons.append(barButton)
                 
                 buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
@@ -213,6 +202,7 @@ public class SwiftPages: UIView {
         // Load the pages to show initially
         loadVisiblePages()
         
+        // Do the initial alignment of the subViews
         alignSubviews()
     }
     
@@ -236,40 +226,6 @@ public class SwiftPages: UIView {
             buttonsWithImages = true
         } else {
             print("Initilization failed, the VC ID array count does not match the button images array count.")
-        }
-    }
-    
-    public func alignSubviews() {
-        
-        let pageCount = viewControllerIDs.count
-        
-        //Setup the new frames
-        scrollView.contentSize = CGSizeMake(CGFloat(pageCount) * scrollView.bounds.size.width,
-            scrollView.bounds.size.height);
-        topBar.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight)
-        blurView?.frame = topBar.bounds
-        
-        //Set the new frame of the scrollview contents
-        var i = 0
-        for viewController in pageViews {
-            viewController?.view.frame = CGRectMake(CGFloat(i) * scrollView.bounds.size.width, 0,
-                scrollView.bounds.size.width, scrollView.bounds.size.height)
-            i++
-        }
-        
-        //Set the new frame for the bar buttons
-        var buttonsXPosition: CGFloat = 0
-        for button in barButtons {
-            let newFrame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / (CGFloat)(viewControllerIDs.count), height: topBarHeight)
-            button?.frame = newFrame
-            buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
-        }
-        
-        // Set the new frame
-        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
-        if barShadow {
-            shadowView.frame.size = CGSize(width: containerView.frame.size.width, height: 4)
-            shadowViewGradient.frame = shadowView.bounds
         }
     }
     
@@ -318,14 +274,47 @@ public class SwiftPages: UIView {
         scrollView.setContentOffset(CGPoint(x: pagesScrollViewSize.width * (CGFloat)(index), y: 0), animated: true)
     }
     
+    // MARK: - Orientation Handling Functions -
+    
+    public func alignSubviews() {
+        
+        let pageCount = viewControllerIDs.count
+        
+        //Setup the new frames
+        scrollView.contentSize = CGSizeMake(CGFloat(pageCount) * scrollView.bounds.size.width,
+            scrollView.bounds.size.height);
+        topBar.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight)
+        blurView?.frame = topBar.bounds
+        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
+        if barShadow {
+            shadowView.frame.size = CGSize(width: containerView.frame.size.width, height: 4)
+            shadowViewGradient.frame = shadowView.bounds
+        }
+        
+        //Set the new frame of the scrollview contents
+        var i = 0
+        for viewController in pageViews {
+            viewController?.view.frame = CGRectMake(CGFloat(i) * scrollView.bounds.size.width, 0,
+                scrollView.bounds.size.width, scrollView.bounds.size.height)
+            i++
+        }
+        
+        //Set the new frame for the top bar buttons
+        var buttonsXPosition: CGFloat = 0
+        for button in barButtons {
+            let newFrame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / (CGFloat)(viewControllerIDs.count), height: topBarHeight)
+            button?.frame = newFrame
+            buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
+        }
+    }
+    
     func orientationWillChange() {
-        print("*****orientationWillChange")
+        //Save the current page
         currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
-        print("Page -> \(currentPage)")
     }
     
     func orientationDidChange() {
-        print("*****orientationDidChange")
+        //Update the view
         alignSubviews()
         scrollView.contentOffset = CGPointMake(CGFloat(currentPage) * scrollView.frame.size.width, 0)
     }
