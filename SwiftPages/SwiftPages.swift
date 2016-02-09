@@ -70,7 +70,8 @@ public class SwiftPages: UIView {
         let pagesContainerHeight = frame.height - yOrigin - distanceToBottom
         let pagesContainerWidth = frame.width
         
-        //Set the notifications for an orientation change
+        //Set the notifications for an orientation change & BG mode
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
 
@@ -306,6 +307,11 @@ public class SwiftPages: UIView {
             button?.frame = newFrame
             buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
         }
+    }
+    
+    func applicationWillEnterBackground() {
+        //Save the current page
+        currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
     }
     
     func orientationWillChange() {
