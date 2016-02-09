@@ -10,14 +10,12 @@ import UIKit
 
 class FirstExampleVC: UIViewController {
     
+    @IBOutlet var swiftPagesView: SwiftPages!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
-
-        //Instantiation and the setting of the size and position
-        let swiftPagesView : SwiftPages!
-        swiftPagesView = SwiftPages(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
         
         // Initiation
         let VCIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
@@ -33,7 +31,5 @@ class FirstExampleVC: UIViewController {
         swiftPagesView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
         swiftPagesView.setTopBarBackground(UIColor(red: 244/255, green: 164/255, blue: 96/255, alpha: 1.0))
         swiftPagesView.setAnimatedBarColor(UIColor(red: 255/255, green: 250/255, blue: 205/255, alpha: 1.0))
-        
-        self.view.addSubview(swiftPagesView)
     }
 }

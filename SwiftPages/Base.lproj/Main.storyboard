@@ -100,8 +100,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJH-aq-qI4" customClass="SwiftPages" customModule="SwiftPages" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="qJH-aq-qI4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-ye-YXx"/>
+                            <constraint firstItem="qJH-aq-qI4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Duz-U6-pAD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qJH-aq-qI4" secondAttribute="bottom" id="qu2-ML-Njl"/>
+                            <constraint firstItem="qJH-aq-qI4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vG7-2C-H5R"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="swiftPagesView" destination="qJH-aq-qI4" id="wiO-mt-9eh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,10 +145,12 @@
                             <constraint firstAttribute="width" secondItem="a5Q-fM-4th" secondAttribute="width" id="Qnq-mb-oyH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a5Q-fM-4th" secondAttribute="trailing" constant="-16" id="RMB-uO-B3Y"/>
                             <constraint firstItem="a5Q-fM-4th" firstAttribute="leading" secondItem="zKe-Ev-gNb" secondAttribute="leadingMargin" constant="-16" id="VQQ-JB-6M7"/>
+                            <constraint firstItem="a5Q-fM-4th" firstAttribute="top" secondItem="tWS-mh-uOS" secondAttribute="bottom" id="c5G-mS-dbE"/>
                             <constraint firstItem="V2C-5s-2n9" firstAttribute="top" secondItem="a5Q-fM-4th" secondAttribute="bottom" id="yg7-ek-G6u"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="2Ty-Oh-GPj"/>
                                 <exclude reference="RMB-uO-B3Y"/>
                                 <exclude reference="VQQ-JB-6M7"/>
                             </mask>
