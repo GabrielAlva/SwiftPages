@@ -324,6 +324,20 @@ public class SwiftPages: UIView {
         scrollView.contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.frame.size.width, y: 0)
     }
     
+    // MARK: - ScrollView delegate -
+    
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let previousPage : NSInteger = currentPage
+        let pageWidth : CGFloat = scrollView.frame.size.width
+        let fractionalPage = scrollView.contentOffset.x / pageWidth
+        let page : NSInteger = Int(round(fractionalPage))
+        if (previousPage != page) {
+            currentPage = page;
+        }
+    }
+    
+    // MARK: - deinit -
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
