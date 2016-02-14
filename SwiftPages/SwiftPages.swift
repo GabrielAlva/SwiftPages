@@ -126,7 +126,7 @@ public class SwiftPages: UIView {
             topBar.backgroundColor = UIColor.clearColor()
             
             let blurEffect: UIBlurEffect = UIBlurEffect(style: .Light)
-            let blurView = UIVisualEffectView(effect: blurEffect)
+            blurView = UIVisualEffectView(effect: blurEffect)
             
             blurView.frame = topBar.bounds
             blurView.translatesAutoresizingMaskIntoConstraints = false
