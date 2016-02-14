@@ -228,8 +228,6 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         guard nil != cellFakeView else { return }
         
         let offset = offsetFromTop
-        _ = insetsTop
-        _ = insetsEnd
         
         let trigerInsetTop = self.trigerInsetTop
         let trigerInsetEnd = self.trigerInsetEnd
@@ -331,10 +329,10 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         let offset = self.offsetFromTop
         let offsetEnd = self.offsetFromTop + self.collectionViewLength
         let insetTop = self.insetsTop
-        _ = self.insetsEnd
+        
         let trigerInsetTop = self.trigerInsetTop
         let trigerInsetEnd = self.trigerInsetEnd
-        _ = self.trigerPaddingTop
+        
         let paddingEnd = self.trigerPaddingEnd
         
         var percentage: CGFloat = 0

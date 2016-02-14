@@ -70,11 +70,11 @@ public class SwiftPages: UIView {
         let pagesContainerHeight = frame.height - yOrigin - distanceToBottom
         let pagesContainerWidth = frame.width
         
-        //Set the notifications for an orientation change & BG mode
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
-
+        // Set the notifications for an orientation change & BG mode
+        let defaultNotificationCenter = NSNotificationCenter.defaultCenter()
+        defaultNotificationCenter.addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
+        defaultNotificationCenter.addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
+        defaultNotificationCenter.addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         // Set the containerView, every item is constructed relative to this view
         containerView = UIView(frame: CGRect(x: xOrigin, y: yOrigin, width: pagesContainerWidth, height: pagesContainerHeight))
@@ -103,11 +103,11 @@ public class SwiftPages: UIView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
         scrollView.backgroundColor = UIColor.clearColor()
-        scrollView.contentOffset = CGPointMake(0, 0)
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(scrollView)
         
-        //Add the constraints to the scrollview.
+        // Add the constraints to the scrollview.
         if #available(iOS 9.0, *) {
             let leadingConstraint = scrollView.leadingAnchor.constraintEqualToAnchor(containerView.leadingAnchor)
             let trailingConstraint = scrollView.trailingAnchor.constraintEqualToAnchor(containerView.trailingAnchor)
@@ -125,8 +125,9 @@ public class SwiftPages: UIView {
             // You can choose between ExtraLight, Light and Dark
             topBar.backgroundColor = UIColor.clearColor()
             
-            let blurEffect: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-            blurView = UIVisualEffectView(effect: blurEffect)
+            let blurEffect: UIBlurEffect = UIBlurEffect(style: .Light)
+            let blurView = UIVisualEffectView(effect: blurEffect)
+            
             blurView.frame = topBar.bounds
             blurView.translatesAutoresizingMaskIntoConstraints = false
             topBar.addSubview(blurView)
@@ -140,24 +141,24 @@ public class SwiftPages: UIView {
             var buttonsXPosition: CGFloat = 0
             
             for (index, image) in buttonImages.enumerate() {
-                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / (CGFloat)(viewControllerIDs.count), height: topBarHeight)
+                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
                 
                 let barButton = UIButton(frame: frame)
                 barButton.backgroundColor = UIColor.clearColor()
-                barButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+                barButton.imageView?.contentMode = .ScaleAspectFit
                 barButton.setImage(image, forState: .Normal)
                 barButton.tag = index
-                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
                 topBar.addSubview(barButton)
                 barButtons.append(barButton)
                 
-                buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
+                buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
             }
         } else {
             var buttonsXPosition: CGFloat = 0
             
             for (index, title) in buttonTitles.enumerate() {
-                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / (CGFloat)(viewControllerIDs.count), height: topBarHeight)
+                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
                 
                 let barButton = UIButton(frame: frame)
                 barButton.backgroundColor = UIColor.clearColor()
@@ -169,13 +170,13 @@ public class SwiftPages: UIView {
                 topBar.addSubview(barButton)
                 barButtons.append(barButton)
                 
-                buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
+                buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
             }
         }
         
         // Set up the animated UIView
-        animatedBar = UIView(frame: CGRect(x: 0, y: topBarHeight - animatedBarHeight + 1, width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight))
-        animatedBar.center.x = containerView.frame.size.width / (CGFloat)(viewControllerIDs.count < 1)
+        animatedBar = UIView(frame: CGRect(x: 0, y: topBarHeight - animatedBarHeight + 1, width: (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.8, height: animatedBarHeight))
+        animatedBar.center.x = containerView.frame.size.width / CGFloat(viewControllerIDs.count << 1)
         animatedBar.backgroundColor = animatedBarColor
         containerView.addSubview(animatedBar)
         
@@ -197,8 +198,7 @@ public class SwiftPages: UIView {
         
         // Defining the content size of the scrollview
         let pagesScrollViewSize = scrollView.frame.size
-        scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageCount),
-            height: pagesScrollViewSize.height)
+        scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageCount), height: pagesScrollViewSize.height)
         
         // Load the pages to show initially
         loadVisiblePages()
@@ -269,10 +269,10 @@ public class SwiftPages: UIView {
     }
     
     public func barButtonAction(sender: UIButton?) {
-        let index: Int = sender!.tag
+        let index = sender!.tag
         let pagesScrollViewSize = scrollView.frame.size
         
-        scrollView.setContentOffset(CGPoint(x: pagesScrollViewSize.width * (CGFloat)(index), y: 0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: pagesScrollViewSize.width * CGFloat(index), y: 0), animated: true)
     }
     
     // MARK: - Orientation Handling Functions -
@@ -281,9 +281,8 @@ public class SwiftPages: UIView {
         
         let pageCount = viewControllerIDs.count
         
-        //Setup the new frames
-        scrollView.contentSize = CGSizeMake(CGFloat(pageCount) * scrollView.bounds.size.width,
-            scrollView.bounds.size.height);
+        // Setup the new frames
+        scrollView.contentSize = CGSize(width: CGFloat(pageCount) * scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         topBar.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight)
         blurView?.frame = topBar.bounds
         animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
@@ -292,20 +291,16 @@ public class SwiftPages: UIView {
             shadowViewGradient.frame = shadowView.bounds
         }
         
-        //Set the new frame of the scrollview contents
-        var i = 0
-        for viewController in pageViews {
-            viewController?.view.frame = CGRectMake(CGFloat(i) * scrollView.bounds.size.width, 0,
-                scrollView.bounds.size.width, scrollView.bounds.size.height)
-            i++
+        // Set the new frame of the scrollview contents
+        for (index, controller) in pageViews.enumerate() {
+            controller?.view.frame = CGRect(x: CGFloat(index) * scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         }
         
-        //Set the new frame for the top bar buttons
+        // Set the new frame for the top bar buttons
         var buttonsXPosition: CGFloat = 0
         for button in barButtons {
-            let newFrame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / (CGFloat)(viewControllerIDs.count), height: topBarHeight)
-            button?.frame = newFrame
-            buttonsXPosition += containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)
+            button?.frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
+            buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
         }
     }
     
@@ -322,7 +317,7 @@ public class SwiftPages: UIView {
     func orientationDidChange() {
         //Update the view
         alignSubviews()
-        scrollView.contentOffset = CGPointMake(CGFloat(currentPage) * scrollView.frame.size.width, 0)
+        scrollView.contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.frame.size.width, y: 0)
     }
     
     deinit {
@@ -341,16 +336,7 @@ extension SwiftPages: UIScrollViewDelegate {
         
         // The calculations for the animated bar's movements
         // The offset addition is based on the width of the animated bar (button width times 0.8)
-        let offsetAddition = (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.1
-        animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / (CGFloat)(viewControllerIDs.count))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
+        let offsetAddition = (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.1
+        animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / CGFloat(viewControllerIDs.count))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
     }
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-//    
-//    required public init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-    
 }
