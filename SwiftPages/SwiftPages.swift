@@ -24,7 +24,7 @@ public class SwiftPages: UIView {
     private var buttonTitles = [String]()
     private var buttonImages = [UIImage]()
     private var pageViews = [UIViewController?]()
-    private var currentPage: Int!
+    private var currentPage: Int = 0
     
     // Container view position variables
     private var xOrigin: CGFloat = 0
