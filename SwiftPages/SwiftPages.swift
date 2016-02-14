@@ -176,7 +176,7 @@ public class SwiftPages: UIView {
         
         // Set up the animated UIView
         animatedBar = UIView(frame: CGRect(x: 0, y: topBarHeight - animatedBarHeight + 1, width: (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.8, height: animatedBarHeight))
-        animatedBar.center.x = containerView.frame.size.width / CGFloat(viewControllerIDs.count < 1)
+        animatedBar.center.x = containerView.frame.size.width / CGFloat(viewControllerIDs.count) / 2.0
         animatedBar.backgroundColor = animatedBarColor
         containerView.addSubview(animatedBar)
         
