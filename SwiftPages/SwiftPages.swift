@@ -68,33 +68,9 @@ public class SwiftPages: UIView {
     public func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
     public func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
     
-//    override init (frame : CGRect) {
-//        print("1. init with frame called")
-//        super.init(frame : frame)
-//        construct()
-//    }
-//    
-//    convenience init () {
-//        print("2. convenience init called")
-//        self.init(frame:CGRect.zero)
-//    }
-//    
-//    required public init(coder aDecoder: NSCoder) {
-//        print("3. init with coder called")
-//        super.init(coder: aDecoder)!
-//        construct()
-//    }
-//    
-//    func construct (){
-//        print("4. construct")
-//        print("Add all the behavior here")
-//    }
-    
     override public func drawRect(rect: CGRect) {
         
         dispatch_once(&token) {
-            NSLog("Do it once")
-            print("-> drawRect")
             let pagesContainerHeight = self.frame.height - self.yOrigin - self.distanceToBottom
             let pagesContainerWidth = self.frame.width
             
@@ -307,7 +283,6 @@ public class SwiftPages: UIView {
     // MARK: - Orientation Handling Functions -
     
     public func alignSubviews() {
-        print("-> alignSubviews")
         let pageCount = viewControllerIDs.count
         
         // Setup the new frames
@@ -323,7 +298,6 @@ public class SwiftPages: UIView {
         // Set the new frame of the scrollview contents
         for (index, controller) in pageViews.enumerate() {
             controller?.view.frame = CGRect(x: CGFloat(index) * scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
-            print("Offset of the VC X: \(controller?.view.frame.origin.x) and Y:\(controller?.view.frame.origin.y)")
         }
         
         // Set the new frame for the top bar buttons
@@ -335,19 +309,16 @@ public class SwiftPages: UIView {
     }
     
     func applicationWillEnterBackground() {
-        print("-> applicationWillEnterBackground")
         //Save the current page
         currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
     }
     
     func orientationWillChange() {
-        print("-> orientationWillChange")
         //Save the current page
         currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
     }
     
     func orientationDidChange() {
-        print("-> orientationDidChange")
         //Update the view
         alignSubviews()
         scrollView.contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.frame.size.width, y: 0)
