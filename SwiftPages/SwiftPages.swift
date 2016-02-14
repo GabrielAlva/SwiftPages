@@ -13,6 +13,8 @@ import UIKit
 
 public class SwiftPages: UIView {
     
+    private var token: dispatch_once_t = 0
+    
     // Items variables
     private var containerView: UIView!
     private var scrollView: UIScrollView!
@@ -66,145 +68,172 @@ public class SwiftPages: UIView {
     public func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
     public func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
     
+//    override init (frame : CGRect) {
+//        print("1. init with frame called")
+//        super.init(frame : frame)
+//        construct()
+//    }
+//    
+//    convenience init () {
+//        print("2. convenience init called")
+//        self.init(frame:CGRect.zero)
+//    }
+//    
+//    required public init(coder aDecoder: NSCoder) {
+//        print("3. init with coder called")
+//        super.init(coder: aDecoder)!
+//        construct()
+//    }
+//    
+//    func construct (){
+//        print("4. construct")
+//        print("Add all the behavior here")
+//    }
+    
     override public func drawRect(rect: CGRect) {
-        let pagesContainerHeight = frame.height - yOrigin - distanceToBottom
-        let pagesContainerWidth = frame.width
         
-        // Set the notifications for an orientation change & BG mode
-        let defaultNotificationCenter = NSNotificationCenter.defaultCenter()
-        defaultNotificationCenter.addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
-        defaultNotificationCenter.addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
-        defaultNotificationCenter.addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
-        // Set the containerView, every item is constructed relative to this view
-        containerView = UIView(frame: CGRect(x: xOrigin, y: yOrigin, width: pagesContainerWidth, height: pagesContainerHeight))
-        containerView.backgroundColor = containerViewBackground
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(containerView)
-        
-        //Add the constraints to the containerView.
-        if #available(iOS 9.0, *) {
-            let horizontalConstraint = containerView.centerXAnchor.constraintEqualToAnchor(self.centerXAnchor)
-            let verticalConstraint = containerView.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor)
-            let widthConstraint = containerView.widthAnchor.constraintEqualToAnchor(self.widthAnchor)
-            let heightConstraint = containerView.heightAnchor.constraintEqualToAnchor(self.heightAnchor)
-            NSLayoutConstraint.activateConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-        }
-
-        
-        // Set the scrollview
-        if aeroEffectInTopBar {
-            scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height))
-        } else {
-            scrollView = UIScrollView(frame: CGRect(x: 0, y: topBarHeight, width: containerView.frame.size.width, height: containerView.frame.size.height - topBarHeight))
-        }
-        scrollView.pagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.delegate = self
-        scrollView.backgroundColor = UIColor.clearColor()
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(scrollView)
-        
-        // Add the constraints to the scrollview.
-        if #available(iOS 9.0, *) {
-            let leadingConstraint = scrollView.leadingAnchor.constraintEqualToAnchor(containerView.leadingAnchor)
-            let trailingConstraint = scrollView.trailingAnchor.constraintEqualToAnchor(containerView.trailingAnchor)
-            let topConstraint = scrollView.topAnchor.constraintEqualToAnchor(containerView.topAnchor)
-            let bottomConstraint = scrollView.bottomAnchor.constraintEqualToAnchor(containerView.bottomAnchor)
-            NSLayoutConstraint.activateConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-        }
-        
-        // Set the top bar
-        topBar = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight))
-        topBar.backgroundColor = topBarBackground
-        
-        if aeroEffectInTopBar {
-            // Create the blurred visual effect
-            // You can choose between ExtraLight, Light and Dark
-            topBar.backgroundColor = UIColor.clearColor()
+        dispatch_once(&token) {
+            NSLog("Do it once")
+            print("-> drawRect")
+            let pagesContainerHeight = self.frame.height - self.yOrigin - self.distanceToBottom
+            let pagesContainerWidth = self.frame.width
             
-            let blurEffect: UIBlurEffect = UIBlurEffect(style: .Light)
-            blurView = UIVisualEffectView(effect: blurEffect)
+            // Set the notifications for an orientation change & BG mode
+            let defaultNotificationCenter = NSNotificationCenter.defaultCenter()
+            defaultNotificationCenter.addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
+            defaultNotificationCenter.addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
+            defaultNotificationCenter.addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
             
-            blurView.frame = topBar.bounds
-            blurView.translatesAutoresizingMaskIntoConstraints = false
-            topBar.addSubview(blurView)
-        }
-        topBar.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(topBar)
-        
-        // Set the top bar buttons
-        // Check to see if the top bar will be created with images ot text
-        if buttonsWithImages {
-            var buttonsXPosition: CGFloat = 0
+            // Set the containerView, every item is constructed relative to this view
+            self.containerView = UIView(frame: CGRect(x: self.xOrigin, y: self.yOrigin, width: pagesContainerWidth, height: pagesContainerHeight))
+            self.containerView.backgroundColor = self.containerViewBackground
+            self.containerView.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(self.containerView)
             
-            for (index, image) in buttonImages.enumerate() {
-                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
-                
-                let barButton = UIButton(frame: frame)
-                barButton.backgroundColor = UIColor.clearColor()
-                barButton.imageView?.contentMode = .ScaleAspectFit
-                barButton.setImage(image, forState: .Normal)
-                barButton.tag = index
-                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
-                topBar.addSubview(barButton)
-                barButtons.append(barButton)
-                
-                buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
+            //Add the constraints to the containerView.
+            if #available(iOS 9.0, *) {
+                let horizontalConstraint = self.containerView.centerXAnchor.constraintEqualToAnchor(self.centerXAnchor)
+                let verticalConstraint = self.containerView.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor)
+                let widthConstraint = self.containerView.widthAnchor.constraintEqualToAnchor(self.widthAnchor)
+                let heightConstraint = self.containerView.heightAnchor.constraintEqualToAnchor(self.heightAnchor)
+                NSLayoutConstraint.activateConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
             }
-        } else {
-            var buttonsXPosition: CGFloat = 0
             
-            for (index, title) in buttonTitles.enumerate() {
-                let frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
-                
-                let barButton = UIButton(frame: frame)
-                barButton.backgroundColor = UIColor.clearColor()
-                barButton.titleLabel!.font = buttonsTextFontAndSize
-                barButton.setTitle(title, forState: .Normal)
-                barButton.setTitleColor(buttonsTextColor, forState: .Normal)
-                barButton.tag = index
-                barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
-                topBar.addSubview(barButton)
-                barButtons.append(barButton)
-                
-                buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
+            
+            // Set the scrollview
+            if self.aeroEffectInTopBar {
+                self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height))
+            } else {
+                self.scrollView = UIScrollView(frame: CGRect(x: 0, y: self.topBarHeight, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height - self.topBarHeight))
             }
+            self.scrollView.pagingEnabled = true
+            self.scrollView.showsHorizontalScrollIndicator = false
+            self.scrollView.showsVerticalScrollIndicator = false
+            self.scrollView.delegate = self
+            self.scrollView.backgroundColor = UIColor.clearColor()
+            self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+            self.containerView.addSubview(self.scrollView)
+            
+            // Add the constraints to the scrollview.
+            if #available(iOS 9.0, *) {
+                let leadingConstraint = self.scrollView.leadingAnchor.constraintEqualToAnchor(self.containerView.leadingAnchor)
+                let trailingConstraint = self.scrollView.trailingAnchor.constraintEqualToAnchor(self.containerView.trailingAnchor)
+                let topConstraint = self.scrollView.topAnchor.constraintEqualToAnchor(self.containerView.topAnchor)
+                let bottomConstraint = self.scrollView.bottomAnchor.constraintEqualToAnchor(self.containerView.bottomAnchor)
+                NSLayoutConstraint.activateConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+            }
+            
+            // Set the top bar
+            self.topBar = UIView(frame: CGRect(x: 0, y: 0, width: self.containerView.frame.size.width, height: self.topBarHeight))
+            self.topBar.backgroundColor = self.topBarBackground
+            
+            if self.aeroEffectInTopBar {
+                // Create the blurred visual effect
+                // You can choose between ExtraLight, Light and Dark
+                self.topBar.backgroundColor = UIColor.clearColor()
+                
+                let blurEffect: UIBlurEffect = UIBlurEffect(style: .Light)
+                self.blurView = UIVisualEffectView(effect: blurEffect)
+                
+                self.blurView.frame = self.topBar.bounds
+                self.blurView.translatesAutoresizingMaskIntoConstraints = false
+                self.topBar.addSubview(self.blurView)
+            }
+            self.topBar.translatesAutoresizingMaskIntoConstraints = false
+            self.containerView.addSubview(self.topBar)
+            
+            // Set the top bar buttons
+            // Check to see if the top bar will be created with images ot text
+            if self.buttonsWithImages {
+                var buttonsXPosition: CGFloat = 0
+                
+                for (index, image) in self.buttonImages.enumerate() {
+                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count), height: self.topBarHeight)
+                    
+                    let barButton = UIButton(frame: frame)
+                    barButton.backgroundColor = UIColor.clearColor()
+                    barButton.imageView?.contentMode = .ScaleAspectFit
+                    barButton.setImage(image, forState: .Normal)
+                    barButton.tag = index
+                    barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
+                    self.topBar.addSubview(barButton)
+                    self.barButtons.append(barButton)
+                    
+                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)
+                }
+            } else {
+                var buttonsXPosition: CGFloat = 0
+                
+                for (index, title) in self.buttonTitles.enumerate() {
+                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count), height: self.topBarHeight)
+                    
+                    let barButton = UIButton(frame: frame)
+                    barButton.backgroundColor = UIColor.clearColor()
+                    barButton.titleLabel!.font = self.buttonsTextFontAndSize
+                    barButton.setTitle(title, forState: .Normal)
+                    barButton.setTitleColor(self.buttonsTextColor, forState: .Normal)
+                    barButton.tag = index
+                    barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
+                    self.topBar.addSubview(barButton)
+                    self.barButtons.append(barButton)
+                    
+                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)
+                }
+            }
+            
+            // Set up the animated UIView
+            self.animatedBar = UIView(frame: CGRect(x: 0, y: self.topBarHeight - self.animatedBarHeight + 1, width: (self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)) * 0.8, height: self.animatedBarHeight))
+            self.animatedBar.center.x = self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count << 1)
+            self.animatedBar.backgroundColor = self.animatedBarColor
+            self.containerView.addSubview(self.animatedBar)
+            
+            // Add the bar shadow (set to true or false with the barShadow var)
+            if self.barShadow {
+                self.shadowView = UIView(frame: CGRect(x: 0, y: self.topBarHeight, width: self.containerView.frame.size.width, height: 4))
+                self.shadowViewGradient.frame = self.shadowView.bounds
+                self.shadowViewGradient.colors = [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.28).CGColor, UIColor.clearColor().CGColor]
+                self.shadowView.layer.insertSublayer(self.shadowViewGradient, atIndex: 0)
+                self.containerView.addSubview(self.shadowView)
+            }
+            
+            let pageCount = self.viewControllerIDs.count
+            
+            // Fill the array containing the VC instances with nil objects as placeholders
+            for _ in 0..<pageCount {
+                self.pageViews.append(nil)
+            }
+            
+            // Defining the content size of the scrollview
+            let pagesScrollViewSize = self.scrollView.frame.size
+            self.scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageCount), height: pagesScrollViewSize.height)
+            
+            // Load the pages to show initially
+            self.loadVisiblePages()
+            
+            // Do the initial alignment of the subViews
+            self.alignSubviews()
         }
-        
-        // Set up the animated UIView
-        animatedBar = UIView(frame: CGRect(x: 0, y: topBarHeight - animatedBarHeight + 1, width: (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.8, height: animatedBarHeight))
-        animatedBar.center.x = containerView.frame.size.width / CGFloat(viewControllerIDs.count << 1)
-        animatedBar.backgroundColor = animatedBarColor
-        containerView.addSubview(animatedBar)
-        
-        // Add the bar shadow (set to true or false with the barShadow var)
-        if barShadow {
-            shadowView = UIView(frame: CGRect(x: 0, y: topBarHeight, width: containerView.frame.size.width, height: 4))
-            shadowViewGradient.frame = shadowView.bounds
-            shadowViewGradient.colors = [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.28).CGColor, UIColor.clearColor().CGColor]
-            shadowView.layer.insertSublayer(shadowViewGradient, atIndex: 0)
-            containerView.addSubview(shadowView)
-        }
-        
-        let pageCount = viewControllerIDs.count
-        
-        // Fill the array containing the VC instances with nil objects as placeholders
-        for _ in 0..<pageCount {
-            pageViews.append(nil)
-        }
-        
-        // Defining the content size of the scrollview
-        let pagesScrollViewSize = scrollView.frame.size
-        scrollView.contentSize = CGSize(width: pagesScrollViewSize.width * CGFloat(pageCount), height: pagesScrollViewSize.height)
-        
-        // Load the pages to show initially
-        loadVisiblePages()
-        
-        // Do the initial alignment of the subViews
-        alignSubviews()
     }
     
     // MARK: - Initialization Functions -
@@ -278,7 +307,7 @@ public class SwiftPages: UIView {
     // MARK: - Orientation Handling Functions -
     
     public func alignSubviews() {
-        
+        print("-> alignSubviews")
         let pageCount = viewControllerIDs.count
         
         // Setup the new frames
@@ -294,6 +323,7 @@ public class SwiftPages: UIView {
         // Set the new frame of the scrollview contents
         for (index, controller) in pageViews.enumerate() {
             controller?.view.frame = CGRect(x: CGFloat(index) * scrollView.bounds.size.width, y: 0, width: scrollView.bounds.size.width, height: scrollView.bounds.size.height)
+            print("Offset of the VC X: \(controller?.view.frame.origin.x) and Y:\(controller?.view.frame.origin.y)")
         }
         
         // Set the new frame for the top bar buttons
@@ -305,16 +335,19 @@ public class SwiftPages: UIView {
     }
     
     func applicationWillEnterBackground() {
+        print("-> applicationWillEnterBackground")
         //Save the current page
         currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
     }
     
     func orientationWillChange() {
+        print("-> orientationWillChange")
         //Save the current page
         currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
     }
     
     func orientationDidChange() {
+        print("-> orientationDidChange")
         //Update the view
         alignSubviews()
         scrollView.contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.frame.size.width, y: 0)
