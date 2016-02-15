@@ -86,7 +86,7 @@ public class SwiftPages: UIView {
             self.containerView.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(self.containerView)
             
-            //Add the constraints to the containerView.
+            // Add the constraints to the containerView.
             if #available(iOS 9.0, *) {
                 let horizontalConstraint = self.containerView.centerXAnchor.constraintEqualToAnchor(self.centerXAnchor)
                 let verticalConstraint = self.containerView.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor)
@@ -94,7 +94,6 @@ public class SwiftPages: UIView {
                 let heightConstraint = self.containerView.heightAnchor.constraintEqualToAnchor(self.heightAnchor)
                 NSLayoutConstraint.activateConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
             }
-            
             
             // Set the scrollview
             if self.aeroEffectInTopBar {
@@ -291,7 +290,7 @@ public class SwiftPages: UIView {
         scrollView.contentSize = CGSize(width: CGFloat(pageCount) * scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         topBar.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight)
         blurView?.frame = topBar.bounds
-        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
+        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
         if barShadow {
             shadowView.frame.size = CGSize(width: containerView.frame.size.width, height: 4)
             shadowViewGradient.frame = shadowView.bounds
@@ -326,18 +325,6 @@ public class SwiftPages: UIView {
         scrollView.contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.frame.size.width, y: 0)
     }
     
-    // MARK: - ScrollView delegate -
-    
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let previousPage : NSInteger = currentPage
-        let pageWidth : CGFloat = scrollView.frame.size.width
-        let fractionalPage = scrollView.contentOffset.x / pageWidth
-        let page : NSInteger = Int(round(fractionalPage))
-        if (previousPage != page) {
-            currentPage = page;
-        }
-    }
-    
     // MARK: - deinit -
     
     deinit {
@@ -358,5 +345,15 @@ extension SwiftPages: UIScrollViewDelegate {
         // The offset addition is based on the width of the animated bar (button width times 0.8)
         let offsetAddition = (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.1
         animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / CGFloat(viewControllerIDs.count))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
+    }
+    
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let previousPage = currentPage
+        let pageWidth = scrollView.frame.size.width
+        let fractionalPage = scrollView.contentOffset.x / pageWidth
+        let page = Int(round(fractionalPage))
+        if previousPage != page {
+            currentPage = page;
+        }
     }
 }
