@@ -14,9 +14,9 @@
 
 - A simple yet beautifully architected solution for management of paged-style view controllers.
 - Dynamic loading of view controllers, allowing handling of high amounts of data without compromising memory.
+- Supports all orientations.
 - Highly customisable, all items have clean API’s to change them to any appearance or size.
 - Can be sized and positioned anywhere within a view controller.
-- Made for iPhone and iPad.
 - Extensively documented code for quick understanding.
 <br />
 <p align="center">
