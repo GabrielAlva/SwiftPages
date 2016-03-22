@@ -213,7 +213,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     private func setUpDisplayLink() {
         guard displayLink == nil else { return }
         
-        displayLink = CADisplayLink(target: self, selector: "continuousScroll")
+        displayLink = CADisplayLink(target: self, selector: #selector(RAReorderableLayout.continuousScroll))
         displayLink!.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
@@ -359,8 +359,8 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     private func setUpGestureRecognizers() {
         guard nil != collectionView else { return }
         
-        longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-        panGesture = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        longPress = UILongPressGestureRecognizer(target: self, action: #selector(RAReorderableLayout.handleLongPress(_:)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(RAReorderableLayout.handlePanGesture(_:)))
         longPress?.delegate = self
         panGesture?.delegate = self
         panGesture?.maximumNumberOfTouches = 1

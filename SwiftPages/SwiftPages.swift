@@ -76,9 +76,9 @@ public class SwiftPages: UIView {
             
             // Set the notifications for an orientation change & BG mode
             let defaultNotificationCenter = NSNotificationCenter.defaultCenter()
-            defaultNotificationCenter.addObserver(self, selector: Selector("applicationWillEnterBackground"), name: UIApplicationWillResignActiveNotification, object: nil)
-            defaultNotificationCenter.addObserver(self, selector: Selector("orientationWillChange"), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
-            defaultNotificationCenter.addObserver(self, selector: Selector("orientationDidChange"), name: UIDeviceOrientationDidChangeNotification, object: nil)
+            defaultNotificationCenter.addObserver(self, selector: #selector(SwiftPages.applicationWillEnterBackground), name: UIApplicationWillResignActiveNotification, object: nil)
+            defaultNotificationCenter.addObserver(self, selector: #selector(SwiftPages.orientationWillChange), name: UIApplicationWillChangeStatusBarOrientationNotification, object: nil)
+            defaultNotificationCenter.addObserver(self, selector: #selector(SwiftPages.orientationDidChange), name: UIDeviceOrientationDidChangeNotification, object: nil)
             
             // Set the containerView, every item is constructed relative to this view
             self.containerView = UIView(frame: CGRect(x: self.xOrigin, y: self.yOrigin, width: pagesContainerWidth, height: pagesContainerHeight))
@@ -152,7 +152,7 @@ public class SwiftPages: UIView {
                     barButton.imageView?.contentMode = .ScaleAspectFit
                     barButton.setImage(image, forState: .Normal)
                     barButton.tag = index
-                    barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
+                    barButton.addTarget(self, action: #selector(SwiftPages.barButtonAction(_:)), forControlEvents: .TouchUpInside)
                     self.topBar.addSubview(barButton)
                     self.barButtons.append(barButton)
                     
@@ -170,7 +170,7 @@ public class SwiftPages: UIView {
                     barButton.setTitle(title, forState: .Normal)
                     barButton.setTitleColor(self.buttonsTextColor, forState: .Normal)
                     barButton.tag = index
-                    barButton.addTarget(self, action: "barButtonAction:", forControlEvents: .TouchUpInside)
+                    barButton.addTarget(self, action: #selector(SwiftPages.barButtonAction(_:)), forControlEvents: .TouchUpInside)
                     self.topBar.addSubview(barButton)
                     self.barButtons.append(barButton)
                     
