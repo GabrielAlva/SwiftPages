@@ -25,6 +25,7 @@ public class SwiftPages: UIView {
     private var buttonImages = [UIImage]()
     private var pageViews = [UIViewController?]()
     private var currentPage: Int = 0
+    private var storyBoardName: String!
     
     // Container view position variables
     private var xOrigin: CGFloat = 0
@@ -213,23 +214,25 @@ public class SwiftPages: UIView {
     }
     
     // MARK: - Initialization Functions -
-    public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String]) {
+    public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String], storyBoardName: String = "Main") {
         // Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonTitlesArray.count {
             viewControllerIDs = VCIDsArray
             buttonTitles = buttonTitlesArray
             buttonsWithImages = false
+            self.storyBoardName = storyBoardName
         } else {
             print("Initilization failed, the VC ID array count does not match the button titles array count.")
         }
     }
     
-    public func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage]) {
+    public func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage], storyBoardName: String = "Main") {
         // Important - Images Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonImagesArray.count {
             viewControllerIDs = VCIDsArray
             buttonImages = buttonImagesArray
             buttonsWithImages = true
+            self.storyBoardName = storyBoardName
         } else {
             print("Initilization failed, the VC ID array count does not match the button images array count.")
         }
@@ -250,7 +253,7 @@ public class SwiftPages: UIView {
         frame.origin.y = 0.0
         
         // Look for the VC by its identifier in the storyboard and add it to the scrollview
-        let newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page])
+        let newPageView = UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page])
         newPageView.view.frame = frame
         scrollView.addSubview(newPageView.view)
         
