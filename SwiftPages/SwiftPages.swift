@@ -26,6 +26,7 @@ public class SwiftPages: UIView {
     private var pageViews = [UIViewController?]()
     private var currentPage: Int = 0
     private var storyBoardName: String!
+    private var storyBoard: UIStoryboard?
     
     // Container view position variables
     private var xOrigin: CGFloat = 0
@@ -214,6 +215,17 @@ public class SwiftPages: UIView {
     }
     
     // MARK: - Initialization Functions -
+    
+    public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String], storyBoard: UIStoryboard) {
+        self.storyBoard = storyBoard;
+        initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray, buttonTitlesArray: buttonTitlesArray)
+    }
+    
+    public func initializeWithVCIDsArrayAndButtonImagesArray (VCIDsArray: [String], buttonImagesArray: [UIImage], storyBoard: UIStoryboard) {
+        self.storyBoard = storyBoard
+        initializeWithVCIDsArrayAndButtonImagesArray(VCIDsArray, buttonImagesArray: buttonImagesArray)
+    }
+    
     public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String], storyBoardName: String = "Main") {
         // Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonTitlesArray.count {
@@ -253,12 +265,20 @@ public class SwiftPages: UIView {
         frame.origin.y = 0.0
         
         // Look for the VC by its identifier in the storyboard and add it to the scrollview
-        let newPageView = UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page])
+        let newPageView = instanciateViewControllerWithIdentifier(viewControllerIDs[page])
         newPageView.view.frame = frame
         scrollView.addSubview(newPageView.view)
         
         // Replace the nil in the pageViews array with the VC just created
         pageViews[page] = newPageView
+    }
+    
+    public func instanciateViewControllerWithIdentifier(identifier: String) -> UIViewController {
+        //if we have a storyboard created
+        if let storyBoard = storyBoard {
+            return storyBoard.instantiateViewControllerWithIdentifier(identifier)
+        }
+        return UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewControllerWithIdentifier(identifier)
     }
     
     public func loadVisiblePages() {
