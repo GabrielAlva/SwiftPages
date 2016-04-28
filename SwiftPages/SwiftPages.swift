@@ -21,12 +21,16 @@ public class SwiftPages: UIView {
     private var topBar: UIView!
     private var animatedBar: UIView!
     private var viewControllerIDs = [String]()
+    private var viewControllersArray = [UIViewController]()
     private var buttonTitles = [String]()
     private var buttonImages = [UIImage]()
     private var pageViews = [UIViewController?]()
     private var currentPage: Int = 0
     private var storyBoardName: String!
     private var storyBoard: UIStoryboard?
+    private var pageCount: Int {
+        return viewControllerIDs.count != 0 ? viewControllerIDs.count : viewControllersArray.count
+    }
     
     // Container view position variables
     private var xOrigin: CGFloat = 0
@@ -75,6 +79,8 @@ public class SwiftPages: UIView {
         dispatch_once(&token) {
             let pagesContainerHeight = self.frame.height - self.yOrigin - self.distanceToBottom
             let pagesContainerWidth = self.frame.width
+            
+            let pageCount = self.pageCount
             
             // Set the notifications for an orientation change & BG mode
             let defaultNotificationCenter = NSNotificationCenter.defaultCenter()
@@ -147,7 +153,7 @@ public class SwiftPages: UIView {
                 var buttonsXPosition: CGFloat = 0
                 
                 for (index, image) in self.buttonImages.enumerate() {
-                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count), height: self.topBarHeight)
+                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(pageCount), height: self.topBarHeight)
                     
                     let barButton = UIButton(frame: frame)
                     barButton.backgroundColor = UIColor.clearColor()
@@ -158,13 +164,13 @@ public class SwiftPages: UIView {
                     self.topBar.addSubview(barButton)
                     self.barButtons.append(barButton)
                     
-                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)
+                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(pageCount)
                 }
             } else {
                 var buttonsXPosition: CGFloat = 0
                 
                 for (index, title) in self.buttonTitles.enumerate() {
-                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count), height: self.topBarHeight)
+                    let frame = CGRect(x: buttonsXPosition, y: 0, width: self.containerView.frame.size.width / CGFloat(pageCount), height: self.topBarHeight)
                     
                     let barButton = UIButton(frame: frame)
                     barButton.backgroundColor = UIColor.clearColor()
@@ -176,13 +182,13 @@ public class SwiftPages: UIView {
                     self.topBar.addSubview(barButton)
                     self.barButtons.append(barButton)
                     
-                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)
+                    buttonsXPosition += self.containerView.frame.size.width / CGFloat(pageCount)
                 }
             }
             
             // Set up the animated UIView
-            self.animatedBar = UIView(frame: CGRect(x: 0, y: self.topBarHeight - self.animatedBarHeight + 1, width: (self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count)) * 0.8, height: self.animatedBarHeight))
-            self.animatedBar.center.x = self.containerView.frame.size.width / CGFloat(self.viewControllerIDs.count << 1)
+            self.animatedBar = UIView(frame: CGRect(x: 0, y: self.topBarHeight - self.animatedBarHeight + 1, width: (self.containerView.frame.size.width / CGFloat(pageCount)) * 0.8, height: self.animatedBarHeight))
+            self.animatedBar.center.x = self.containerView.frame.size.width / CGFloat(pageCount << 1)
             self.animatedBar.backgroundColor = self.animatedBarColor
             self.containerView.addSubview(self.animatedBar)
             
@@ -194,8 +200,6 @@ public class SwiftPages: UIView {
                 self.shadowView.layer.insertSublayer(self.shadowViewGradient, atIndex: 0)
                 self.containerView.addSubview(self.shadowView)
             }
-            
-            let pageCount = self.viewControllerIDs.count
             
             // Fill the array containing the VC instances with nil objects as placeholders
             for _ in 0..<pageCount {
@@ -226,6 +230,28 @@ public class SwiftPages: UIView {
         initializeWithVCIDsArrayAndButtonImagesArray(VCIDsArray, buttonImagesArray: buttonImagesArray)
     }
     
+    public func initializeWithVCsInstanciatedArrayAndButtonTitlesArray(VCsArray: [UIViewController], buttonTitlesArray: [String]) {
+        // Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
+        if VCsArray.count == buttonTitlesArray.count {
+            viewControllersArray = VCsArray
+            buttonTitles = buttonTitlesArray
+            buttonsWithImages = false
+        } else {
+            print("Initilization failed, the VC array count does not match the button titles array count.")
+        }
+    }
+    
+    public func initializeWithVCsInstanciatedArrayAndButtonImagesArray(VCsArray: [UIViewController], buttonImagesArray: [UIImage]) {
+        // Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
+        if VCsArray.count == buttonImagesArray.count {
+            viewControllersArray = VCsArray
+            buttonImages = buttonImagesArray
+            buttonsWithImages = true
+        } else {
+            print("Initilization failed, the VC array count does not match the button titles array count.")
+        }
+    }
+    
     public func initializeWithVCIDsArrayAndButtonTitlesArray (VCIDsArray: [String], buttonTitlesArray: [String], storyBoardName: String = "Main") {
         // Important - Titles Array must Have The Same Number Of Items As The viewControllerIDs Array
         if VCIDsArray.count == buttonTitlesArray.count {
@@ -252,7 +278,7 @@ public class SwiftPages: UIView {
     
     public func loadPage(page: Int) {
         // If it's outside the range of what you have to display, then do nothing
-        guard page >= 0 && page < viewControllerIDs.count else { return }
+        guard page >= 0 && page < pageCount else { return }
         
         // Do nothing if the view is already loaded.
         guard pageViews[page] == nil else { return }
@@ -264,8 +290,7 @@ public class SwiftPages: UIView {
         frame.origin.x = frame.size.width * CGFloat(page)
         frame.origin.y = 0.0
         
-        // Look for the VC by its identifier in the storyboard and add it to the scrollview
-        let newPageView = instanciateViewControllerWithIdentifier(viewControllerIDs[page])
+        let newPageView = viewControllerForPage(page)
         newPageView.view.frame = frame
         scrollView.addSubview(newPageView.view)
         
@@ -273,8 +298,16 @@ public class SwiftPages: UIView {
         pageViews[page] = newPageView
     }
     
+    public func viewControllerForPage(page: Int) -> UIViewController {
+        //Look for the VC in the VC id list or in the VC object list
+        if viewControllerIDs.count != 0 {
+            return instanciateViewControllerWithIdentifier(viewControllerIDs[page])
+        }
+        return viewControllersArray[page]
+    }
+    
     public func instanciateViewControllerWithIdentifier(identifier: String) -> UIViewController {
-        //if we have a storyboard created
+        //If we have a storyboard created
         if let storyBoard = storyBoard {
             return storyBoard.instantiateViewControllerWithIdentifier(identifier)
         }
@@ -308,13 +341,12 @@ public class SwiftPages: UIView {
     // MARK: - Orientation Handling Functions -
     
     public func alignSubviews() {
-        let pageCount = viewControllerIDs.count
         
         // Setup the new frames
         scrollView.contentSize = CGSize(width: CGFloat(pageCount) * scrollView.bounds.size.width, height: scrollView.bounds.size.height)
         topBar.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: topBarHeight)
         blurView?.frame = topBar.bounds
-        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(viewControllerIDs.count)) * 0.8, height: animatedBarHeight)
+        animatedBar.frame.size = CGSize(width: (containerView.frame.size.width / (CGFloat)(pageCount)) * 0.8, height: animatedBarHeight)
         if barShadow {
             shadowView.frame.size = CGSize(width: containerView.frame.size.width, height: 4)
             shadowViewGradient.frame = shadowView.bounds
@@ -328,8 +360,8 @@ public class SwiftPages: UIView {
         // Set the new frame for the top bar buttons
         var buttonsXPosition: CGFloat = 0
         for button in barButtons {
-            button?.frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(viewControllerIDs.count), height: topBarHeight)
-            buttonsXPosition += containerView.frame.size.width / CGFloat(viewControllerIDs.count)
+            button?.frame = CGRect(x: buttonsXPosition, y: 0, width: containerView.frame.size.width / CGFloat(pageCount), height: topBarHeight)
+            buttonsXPosition += containerView.frame.size.width / CGFloat(pageCount)
         }
     }
     
@@ -379,7 +411,7 @@ extension SwiftPages: UIScrollViewDelegate {
         
         // The calculations for the animated bar's movements
         // The offset addition is based on the width of the animated bar (button width times 0.8)
-        let offsetAddition = (containerView.frame.size.width / CGFloat(viewControllerIDs.count)) * 0.1
-        animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / CGFloat(viewControllerIDs.count))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
+        let offsetAddition = (containerView.frame.size.width / CGFloat(pageCount)) * 0.1
+        animatedBar.frame = CGRect(x: (offsetAddition + (scrollView.contentOffset.x / CGFloat(pageCount))), y: animatedBar.frame.origin.y, width: animatedBar.frame.size.width, height: animatedBar.frame.size.height)
     }
 }
