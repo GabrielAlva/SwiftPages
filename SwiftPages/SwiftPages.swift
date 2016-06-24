@@ -48,6 +48,7 @@ public class SwiftPages: UIView {
     private var animatedBarHeight: CGFloat = 3
     
     // Bar item variables
+    private var topbarIsEnabled = true
     private var aeroEffectInTopBar = false //This gives the top bap a blurred effect, also overlayes the it over the VC's
     private var buttonsWithImages = false
     private var barShadow = true
@@ -73,6 +74,8 @@ public class SwiftPages: UIView {
     public func enableAeroEffectInTopBar (boolValue : Bool) { aeroEffectInTopBar = boolValue}
     public func enableButtonsWithImages (boolValue : Bool) { buttonsWithImages = boolValue}
     public func enableBarShadow (boolValue : Bool) { barShadow = boolValue}
+    
+    public func disableTopBar () { topbarIsEnabled = false }
     
     override public func drawRect(rect: CGRect) {
         
@@ -145,7 +148,9 @@ public class SwiftPages: UIView {
                 self.topBar.addSubview(self.blurView)
             }
             self.topBar.translatesAutoresizingMaskIntoConstraints = false
-            self.containerView.addSubview(self.topBar)
+            if self.topbarIsEnabled {
+                self.containerView.addSubview(self.topBar)
+            }
             
             // Set the top bar buttons
             // Check to see if the top bar will be created with images ot text
@@ -190,7 +195,9 @@ public class SwiftPages: UIView {
             self.animatedBar = UIView(frame: CGRect(x: 0, y: self.topBarHeight - self.animatedBarHeight + 1, width: (self.containerView.frame.size.width / CGFloat(pageCount)) * 0.8, height: self.animatedBarHeight))
             self.animatedBar.center.x = self.containerView.frame.size.width / CGFloat(pageCount << 1)
             self.animatedBar.backgroundColor = self.animatedBarColor
-            self.containerView.addSubview(self.animatedBar)
+            if self.topbarIsEnabled {
+                self.containerView.addSubview(self.animatedBar)
+            }
             
             // Add the bar shadow (set to true or false with the barShadow var)
             if self.barShadow {
@@ -198,7 +205,9 @@ public class SwiftPages: UIView {
                 self.shadowViewGradient.frame = self.shadowView.bounds
                 self.shadowViewGradient.colors = [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 0.28).CGColor, UIColor.clearColor().CGColor]
                 self.shadowView.layer.insertSublayer(self.shadowViewGradient, atIndex: 0)
-                self.containerView.addSubview(self.shadowView)
+                if self.topbarIsEnabled {
+                    self.containerView.addSubview(self.shadowView)
+                }
             }
             
             // Fill the array containing the VC instances with nil objects as placeholders

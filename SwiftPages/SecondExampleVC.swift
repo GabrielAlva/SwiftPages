@@ -21,6 +21,8 @@ class SecondExampleVC: UIViewController {
         let VCIDs = ["FirstVC", "SecondVC", "ThirdVC", "FourthVC", "FifthVC"]
         let buttonTitles = ["Home", "Places", "Photos", "List", "Tags"]
         
+        swiftPagesView.disableTopBar()
+        
         // Sample customization
         swiftPagesView.setOriginY(0.0)
         swiftPagesView.enableAeroEffectInTopBar(true)
