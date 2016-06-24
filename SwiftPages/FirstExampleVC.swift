@@ -27,8 +27,13 @@ class FirstExampleVC: UIViewController {
             UIImage(named:"StarIcon.png")!
         ]
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let VCsInstanciated = VCIDs.map({ storyboard.instantiateViewControllerWithIdentifier($0) })
+        
         // Sample customization
-        swiftPagesView.initializeWithVCIDsArrayAndButtonImagesArray(VCIDs, buttonImagesArray: buttonImages)
+        swiftPagesView.initializeWithVCsInstanciatedArrayAndButtonImagesArray(VCsInstanciated, buttonImagesArray: buttonImages)
+        //swiftPagesView.initializeWithVCIDsArrayAndButtonImagesArray([], buttonImagesArray: buttonImages)
         swiftPagesView.setTopBarBackground(UIColor(red: 244/255, green: 164/255, blue: 96/255, alpha: 1.0))
         swiftPagesView.setAnimatedBarColor(UIColor(red: 255/255, green: 250/255, blue: 205/255, alpha: 1.0))
     }
