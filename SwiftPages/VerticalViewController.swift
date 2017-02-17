@@ -23,7 +23,7 @@ class VerticalViewController: UIViewController {
         
         title = "RAReorderableLayout"
         
-        collectionView.registerNib(UINib(nibName: "verticalCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.register(UINib(nibName: "verticalCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -52,8 +52,8 @@ class VerticalViewController: UIViewController {
 
 extension VerticalViewController: RAReorderableLayoutDelegate {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let screenWidth = CGRectGetWidth(UIScreen.mainScreen().bounds)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = UIScreen.main.bounds.width
         let threePiecesWidth = floor(screenWidth / 3.0 - ((2.0 / 3) * 2))
         let twoPiecesWidth = floor(screenWidth / 2.0 - (2.0 / 2))
         if indexPath.section == 0 {
@@ -63,38 +63,38 @@ extension VerticalViewController: RAReorderableLayoutDelegate {
         }
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 2.0
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 2.0
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
     }
     
-    func collectionView(collectionView: UICollectionView, allowMoveAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if collectionView.numberOfItemsInSection(indexPath.section) <= 1 {
+    func collectionView(_ collectionView: UICollectionView, allowMoveAtIndexPath indexPath: IndexPath) -> Bool {
+        if collectionView.numberOfItems(inSection: indexPath.section) <= 1 {
             return false
         }
         
         return true
     }
     
-    func collectionView(collectionView: UICollectionView, atIndexPath: NSIndexPath, didMoveToIndexPath toIndexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, atIndexPath: IndexPath, didMoveToIndexPath toIndexPath: IndexPath) {
         var photo: UIImage
         if atIndexPath.section == 0 {
-            photo = imagesForSection0.removeAtIndex(atIndexPath.item)
+            photo = imagesForSection0.remove(at: atIndexPath.item)
         } else {
-            photo = imagesForSection1.removeAtIndex(atIndexPath.item)
+            photo = imagesForSection1.remove(at: atIndexPath.item)
         }
         
         if toIndexPath.section == 0 {
-            self.imagesForSection0.insert(photo, atIndex: toIndexPath.item)
+            self.imagesForSection0.insert(photo, at: toIndexPath.item)
         } else {
-            self.imagesForSection1.insert(photo, atIndex: toIndexPath.item)
+            self.imagesForSection1.insert(photo, at: toIndexPath.item)
         }
     }
 }
@@ -104,11 +104,11 @@ extension VerticalViewController: RAReorderableLayoutDelegate {
 
 extension VerticalViewController: RAReorderableLayoutDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return imagesForSection0.count
         } else {
@@ -116,8 +116,8 @@ extension VerticalViewController: RAReorderableLayoutDataSource {
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("verticalCell", forIndexPath: indexPath) as! RACollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "verticalCell", for: indexPath) as! RACollectionViewCell
         
         if indexPath.section == 0 {
             cell.imageView.image = imagesForSection0[indexPath.item]
@@ -128,7 +128,7 @@ extension VerticalViewController: RAReorderableLayoutDataSource {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, reorderingItemAlphaInSection section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, reorderingItemAlphaInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
         } else {
@@ -136,11 +136,11 @@ extension VerticalViewController: RAReorderableLayoutDataSource {
         }
     }
     
-    func scrollTrigerEdgeInsetsInCollectionView(collectionView: UICollectionView) -> UIEdgeInsets {
+    func scrollTrigerEdgeInsetsInCollectionView(_ collectionView: UICollectionView) -> UIEdgeInsets {
         return UIEdgeInsets(top: 100.0, left: 100.0, bottom: 100.0, right: 100.0)
     }
     
-    func scrollTrigerPaddingInCollectionView(collectionView: UICollectionView) -> UIEdgeInsets {
+    func scrollTrigerPaddingInCollectionView(_ collectionView: UICollectionView) -> UIEdgeInsets {
         return UIEdgeInsets(top: collectionView.contentInset.top, left: 0, bottom: collectionView.contentInset.bottom, right: 0)
     }
 }
@@ -153,9 +153,9 @@ class RACollectionViewCell: UICollectionViewCell {
     var gradientLayer: CAGradientLayer?
     var hilightedCover: UIView!
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            hilightedCover.hidden = !highlighted
+            hilightedCover.isHidden = !isHighlighted
         }
     }
     
@@ -172,28 +172,28 @@ class RACollectionViewCell: UICollectionViewCell {
         applyGradation(imageView)
     }
     
-    private func configure() {
+    fileprivate func configure() {
         imageView = UIImageView()
-        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        imageView.contentMode = .ScaleAspectFill
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         
         hilightedCover = UIView()
-        hilightedCover.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        hilightedCover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         hilightedCover.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        hilightedCover.hidden = true
+        hilightedCover.isHidden = true
         addSubview(hilightedCover)
     }
     
-    private func applyGradation(gradientView: UIView!) {
+    fileprivate func applyGradation(_ gradientView: UIView!) {
         gradientLayer?.removeFromSuperlayer()
         gradientLayer = nil
         
         gradientLayer = CAGradientLayer()
         gradientLayer!.frame = gradientView.bounds
         
-        let mainColor = UIColor(white: 0, alpha: 0.3).CGColor
-        let subColor = UIColor.clearColor().CGColor
+        let mainColor = UIColor(white: 0, alpha: 0.3).cgColor
+        let subColor = UIColor.clear.cgColor
         gradientLayer!.colors = [subColor, mainColor]
         gradientLayer!.locations = [0, 1]
         

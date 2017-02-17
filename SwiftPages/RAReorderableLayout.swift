@@ -7,45 +7,78 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 @objc public protocol RAReorderableLayoutDelegate: UICollectionViewDelegateFlowLayout {
-    optional func collectionView(collectionView: UICollectionView, atIndexPath: NSIndexPath, willMoveToIndexPath toIndexPath: NSIndexPath)
-    optional func collectionView(collectionView: UICollectionView, atIndexPath: NSIndexPath, didMoveToIndexPath toIndexPath: NSIndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, atIndexPath: IndexPath, willMoveToIndexPath toIndexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, atIndexPath: IndexPath, didMoveToIndexPath toIndexPath: IndexPath)
     
-    optional func collectionView(collectionView: UICollectionView, allowMoveAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func collectionView(collectionView: UICollectionView, atIndexPath: NSIndexPath, canMoveToIndexPath: NSIndexPath) -> Bool
+    @objc optional func collectionView(_ collectionView: UICollectionView, allowMoveAtIndexPath indexPath: IndexPath) -> Bool
+    @objc optional func collectionView(_ collectionView: UICollectionView, atIndexPath: IndexPath, canMoveToIndexPath: IndexPath) -> Bool
     
-    optional func collectionView(collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, willBeginDraggingItemAtIndexPath indexPath: NSIndexPath)
-    optional func collectionView(collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, didBeginDraggingItemAtIndexPath indexPath: NSIndexPath)
-    optional func collectionView(collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, willEndDraggingItemToIndexPath indexPath: NSIndexPath)
-    optional func collectionView(collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, didEndDraggingItemToIndexPath indexPath: NSIndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, willBeginDraggingItemAtIndexPath indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, didBeginDraggingItemAtIndexPath indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, willEndDraggingItemToIndexPath indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, collectionViewLayout layout: RAReorderableLayout, didEndDraggingItemToIndexPath indexPath: IndexPath)
 }
 
 @objc public protocol RAReorderableLayoutDataSource: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     
-    optional func collectionView(collectionView: UICollectionView, reorderingItemAlphaInSection section: Int) -> CGFloat
-    optional func scrollTrigerEdgeInsetsInCollectionView(collectionView: UICollectionView) -> UIEdgeInsets
-    optional func scrollTrigerPaddingInCollectionView(collectionView: UICollectionView) -> UIEdgeInsets
-    optional func scrollSpeedValueInCollectionView(collectionView: UICollectionView) -> CGFloat
+    @objc optional func collectionView(_ collectionView: UICollectionView, reorderingItemAlphaInSection section: Int) -> CGFloat
+    @objc optional func scrollTrigerEdgeInsetsInCollectionView(_ collectionView: UICollectionView) -> UIEdgeInsets
+    @objc optional func scrollTrigerPaddingInCollectionView(_ collectionView: UICollectionView) -> UIEdgeInsets
+    @objc optional func scrollSpeedValueInCollectionView(_ collectionView: UICollectionView) -> CGFloat
 }
 
-public class RAReorderableLayout: UICollectionViewFlowLayout {
+open class RAReorderableLayout: UICollectionViewFlowLayout {
     
-    private enum ScrollDirection {
-        case Upward
-        case Downward
-        case Anchor
+    fileprivate enum ScrollDirection {
+        case upward
+        case downward
+        case anchor
         
-        private func scrollValue(speedValue speedValue: CGFloat, percentage: CGFloat) -> CGFloat {
+        fileprivate func scrollValue(speedValue: CGFloat, percentage: CGFloat) -> CGFloat {
             var value: CGFloat = 0.0
             switch self {
-            case .Upward:
+            case .upward:
                 value = -speedValue
-            case .Downward:
+            case .downward:
                 value = speedValue
-            case .Anchor:
+            case .anchor:
                 return 0
             }
             
@@ -54,7 +87,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         }
     }
     
-    public weak var delegate: RAReorderableLayoutDelegate? {
+    open weak var delegate: RAReorderableLayoutDelegate? {
         set {
             collectionView?.delegate = delegate
         }
@@ -63,7 +96,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         }
     }
     
-    public weak var datasource: RAReorderableLayoutDataSource? {
+    open weak var datasource: RAReorderableLayoutDataSource? {
         set {
             collectionView?.delegate = delegate
         }
@@ -72,83 +105,83 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         }
     }
     
-    private var displayLink: CADisplayLink?
+    fileprivate var displayLink: CADisplayLink?
     
-    private var longPress: UILongPressGestureRecognizer?
+    fileprivate var longPress: UILongPressGestureRecognizer?
     
-    private var panGesture: UIPanGestureRecognizer?
+    fileprivate var panGesture: UIPanGestureRecognizer?
     
-    private var continuousScrollDirection = ScrollDirection.Anchor
+    fileprivate var continuousScrollDirection = ScrollDirection.anchor
     
-    private var cellFakeView: RACellFakeView?
+    fileprivate var cellFakeView: RACellFakeView?
     
-    private var panTranslation: CGPoint?
+    fileprivate var panTranslation: CGPoint?
     
-    private var fakeCellCenter: CGPoint?
+    fileprivate var fakeCellCenter: CGPoint?
     
-    public var trigerInsets = UIEdgeInsets(top: 100.0, left: 100.0, bottom: 100.0, right: 100.0)
+    open var trigerInsets = UIEdgeInsets(top: 100.0, left: 100.0, bottom: 100.0, right: 100.0)
     
-    public var trigerPadding = UIEdgeInsetsZero
+    open var trigerPadding = UIEdgeInsets.zero
     
-    public var scrollSpeedValue = CGFloat(10.0)
+    open var scrollSpeedValue = CGFloat(10.0)
     
-    private var offsetFromTop: CGFloat {
+    fileprivate var offsetFromTop: CGFloat {
         let contentOffset = collectionView!.contentOffset
-        return scrollDirection == .Vertical ? contentOffset.y : contentOffset.x
+        return scrollDirection == .vertical ? contentOffset.y : contentOffset.x
     }
     
-    private var insetsTop: CGFloat {
+    fileprivate var insetsTop: CGFloat {
         let contentInsets = collectionView!.contentInset
-        return scrollDirection == .Vertical ? contentInsets.top : contentInsets.left
+        return scrollDirection == .vertical ? contentInsets.top : contentInsets.left
     }
     
-    private var insetsEnd: CGFloat {
+    fileprivate var insetsEnd: CGFloat {
         let contentInsets = collectionView!.contentInset
-        return scrollDirection == .Vertical ? contentInsets.bottom : contentInsets.right
+        return scrollDirection == .vertical ? contentInsets.bottom : contentInsets.right
     }
     
-    private var contentLength: CGFloat {
+    fileprivate var contentLength: CGFloat {
         let contentSize = collectionView!.contentSize
-        return scrollDirection == .Vertical ? contentSize.height : contentSize.width
+        return scrollDirection == .vertical ? contentSize.height : contentSize.width
     }
     
-    private var collectionViewLength: CGFloat {
+    fileprivate var collectionViewLength: CGFloat {
         let collectionViewSize = collectionView!.bounds.size
-        return scrollDirection == .Vertical ? collectionViewSize.height : collectionViewSize.width
+        return scrollDirection == .vertical ? collectionViewSize.height : collectionViewSize.width
     }
     
-    private var fakeCellTopEdge: CGFloat? {
+    fileprivate var fakeCellTopEdge: CGFloat? {
         if let fakeCell = cellFakeView {
-            return scrollDirection == .Vertical ? CGRectGetMinY(fakeCell.frame) : CGRectGetMinX(fakeCell.frame)
+            return scrollDirection == .vertical ? fakeCell.frame.minY : fakeCell.frame.minX
         }
         return nil
     }
     
-    private var fakeCellEndEdge: CGFloat? {
+    fileprivate var fakeCellEndEdge: CGFloat? {
         if let fakeCell = cellFakeView {
-            return scrollDirection == .Vertical ? CGRectGetMaxY(fakeCell.frame) : CGRectGetMaxX(fakeCell.frame)
+            return scrollDirection == .vertical ? fakeCell.frame.maxY : fakeCell.frame.maxX
         }
         return nil
     }
     
-    private var trigerInsetTop: CGFloat {
-        return scrollDirection == .Vertical ? trigerInsets.top : trigerInsets.left
+    fileprivate var trigerInsetTop: CGFloat {
+        return scrollDirection == .vertical ? trigerInsets.top : trigerInsets.left
     }
     
-    private var trigerInsetEnd: CGFloat {
-        return scrollDirection == .Vertical ? trigerInsets.top : trigerInsets.left
+    fileprivate var trigerInsetEnd: CGFloat {
+        return scrollDirection == .vertical ? trigerInsets.top : trigerInsets.left
     }
     
-    private var trigerPaddingTop: CGFloat {
-        if scrollDirection == .Vertical {
+    fileprivate var trigerPaddingTop: CGFloat {
+        if scrollDirection == .vertical {
             return trigerPadding.top
         } else {
             return trigerPadding.left
         }
     }
     
-    private var trigerPaddingEnd: CGFloat {
-        if scrollDirection == .Vertical {
+    fileprivate var trigerPaddingEnd: CGFloat {
+        if scrollDirection == .vertical {
             return trigerPadding.bottom
         } else {
             return trigerPadding.right
@@ -169,8 +202,8 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         removeObserver(self, forKeyPath: "collectionView")
     }
     
-    override public func prepareLayout() {
-        super.prepareLayout()
+    override open func prepare() {
+        super.prepare()
         
         // scroll triger insets
         if let insets = self.datasource?.scrollTrigerEdgeInsetsInCollectionView?(self.collectionView!) {
@@ -188,43 +221,43 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         }
     }
     
-    override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let attributes = super.layoutAttributesForElementsInRect(rect) else { return nil }
+    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
         
-        for attribute in attributes where attribute.representedElementCategory == .Cell && attribute.indexPath.isEqual(cellFakeView?.indexPath) {
+        for attribute in attributes where attribute.representedElementCategory == .cell && (attribute.indexPath == cellFakeView?.indexPath) {
             attribute.alpha = datasource?.collectionView?(collectionView!, reorderingItemAlphaInSection: attribute.indexPath.section) ?? 0
         }
         
         return attributes
     }
     
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "collectionView" {
             setUpGestureRecognizers()
         } else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
-    private func configureObserver() {
+    fileprivate func configureObserver() {
         addObserver(self, forKeyPath: "collectionView", options: [], context: nil)
     }
     
-    private func setUpDisplayLink() {
+    fileprivate func setUpDisplayLink() {
         guard displayLink == nil else { return }
         
         displayLink = CADisplayLink(target: self, selector: #selector(RAReorderableLayout.continuousScroll))
-        displayLink!.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        displayLink!.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
     }
     
-    private func invalidateDisplayLink() {
-        continuousScrollDirection = .Anchor
+    fileprivate func invalidateDisplayLink() {
+        continuousScrollDirection = .anchor
         displayLink?.invalidate()
         displayLink = nil
     }
     
     // begein scroll
-    private func beginScrollIfNeeded() {
+    fileprivate func beginScrollIfNeeded() {
         guard nil != cellFakeView else { return }
         
         let offset = offsetFromTop
@@ -238,10 +271,10 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         let fakeCellEndEdge = self.fakeCellEndEdge
         
         if  fakeCellTopEdge <= offset + paddingTop + trigerInsetTop {
-            self.continuousScrollDirection = .Upward
+            self.continuousScrollDirection = .upward
             self.setUpDisplayLink()
         } else if fakeCellEndEdge >= offset + length - paddingEnd - trigerInsetEnd {
-            self.continuousScrollDirection = .Downward
+            self.continuousScrollDirection = .downward
             self.setUpDisplayLink()
         } else {
             self.invalidateDisplayLink()
@@ -249,15 +282,15 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     }
     
     // move item
-    private func moveItemIfNeeded() {
-        var atIndexPath: NSIndexPath?
-        var toIndexPath: NSIndexPath?
+    fileprivate func moveItemIfNeeded() {
+        var atIndexPath: IndexPath?
+        var toIndexPath: IndexPath?
         if let fakeCell = cellFakeView {
             atIndexPath = fakeCell.indexPath
-            toIndexPath = collectionView!.indexPathForItemAtPoint(cellFakeView!.center)
+            toIndexPath = collectionView!.indexPathForItem(at: cellFakeView!.center)
         }
         
-        if nil == atIndexPath || nil == toIndexPath || atIndexPath!.isEqual(toIndexPath) {
+        if nil == atIndexPath || nil == toIndexPath || (atIndexPath! == toIndexPath) {
             return
         }
         
@@ -271,14 +304,14 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         // will move item
         delegate?.collectionView?(collectionView!, atIndexPath: atIndexPath!, willMoveToIndexPath: toIndexPath!)
         
-        let attribute = layoutAttributesForItemAtIndexPath(toIndexPath!)!
+        let attribute = layoutAttributesForItem(at: toIndexPath!)!
         collectionView!.performBatchUpdates({ () -> Void in
             self.cellFakeView!.indexPath = toIndexPath
             self.cellFakeView!.cellFrame = attribute.frame
             self.cellFakeView!.changeBoundsIfNeeded(attribute.bounds)
             
-            self.collectionView!.deleteItemsAtIndexPaths([atIndexPath!])
-            self.collectionView!.insertItemsAtIndexPaths([toIndexPath!])
+            self.collectionView!.deleteItems(at: [atIndexPath!])
+            self.collectionView!.insertItems(at: [toIndexPath!])
             
             // did move item
             self.delegate?.collectionView?(self.collectionView!, atIndexPath: atIndexPath!, didMoveToIndexPath: toIndexPath!)
@@ -309,11 +342,11 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         
         collectionView!.performBatchUpdates({ () -> Void in            
             switch self.scrollDirection {
-            case .Vertical:
+            case .vertical:
                 self.fakeCellCenter?.y += scrollRate
                 self.cellFakeView?.center.y = self.fakeCellCenter!.y + self.panTranslation!.y
                 self.collectionView?.contentOffset.y += scrollRate
-            case .Horizontal:
+            case .horizontal:
                 self.fakeCellCenter?.x += scrollRate
                 self.cellFakeView?.center.x = self.fakeCellCenter!.x + self.panTranslation!.x
                 self.collectionView?.contentOffset.x += scrollRate
@@ -323,7 +356,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         moveItemIfNeeded()
     }
     
-    private func calcTrigerPercentage() -> CGFloat {
+    fileprivate func calcTrigerPercentage() -> CGFloat {
         guard nil != cellFakeView else { return 0 }
         
         let offset = self.offsetFromTop
@@ -338,15 +371,15 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         var percentage: CGFloat = 0
         
         switch continuousScrollDirection {
-        case .Upward:
+        case .upward:
             if let fakeCellEdge = fakeCellTopEdge {
                 percentage = 1.0 - ((fakeCellEdge - (offset + trigerPaddingTop)) / trigerInsetTop)
             }
-        case .Downward:
+        case .downward:
             if let fakeCellEdge = fakeCellEndEdge {
                 percentage = 1.0 - (((insetTop + offsetEnd - paddingEnd) - (fakeCellEdge + insetTop)) / trigerInsetEnd)
             }
-        case .Anchor: ()
+        case .anchor: ()
         }
         
         // 0 <= percentage <= 1.0
@@ -356,7 +389,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
     }
     
     // gesture recognizers
-    private func setUpGestureRecognizers() {
+    fileprivate func setUpGestureRecognizers() {
         guard nil != collectionView else { return }
         
         longPress = UILongPressGestureRecognizer(target: self, action: #selector(RAReorderableLayout.handleLongPress(_:)))
@@ -367,7 +400,7 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         
         if let gestures = collectionView?.gestureRecognizers {
             for case let gesture as UILongPressGestureRecognizer in gestures {
-                gesture.requireGestureRecognizerToFail(self.longPress!)
+                gesture.require(toFail: self.longPress!)
             }
         }
         
@@ -375,11 +408,11 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
         collectionView?.addGestureRecognizer(panGesture!)
     }
     
-    public func cancelDrag() {
+    open func cancelDrag() {
         cancelDrag(toIndexPath: nil)
     }
     
-    private func cancelDrag(toIndexPath toIndexPath: NSIndexPath!) {
+    fileprivate func cancelDrag(toIndexPath: IndexPath!) {
         guard nil != cellFakeView else { return }
         
         // will end drag item
@@ -408,20 +441,20 @@ public class RAReorderableLayout: UICollectionViewFlowLayout {
 extension RAReorderableLayout: UIGestureRecognizerDelegate {
     
     // gesture recognize delegate
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         // allow move item
-        if let indexPath = collectionView?.indexPathForItemAtPoint(gestureRecognizer.locationInView(collectionView)) {
+        if let indexPath = collectionView?.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) {
             if delegate?.collectionView?(collectionView!, allowMoveAtIndexPath: indexPath) == false {
                 return false
             }
         }
         
         if gestureRecognizer.isEqual(longPress) {
-            if collectionView!.panGestureRecognizer.state != .Possible && collectionView!.panGestureRecognizer.state != .Failed {
+            if collectionView!.panGestureRecognizer.state != .possible && collectionView!.panGestureRecognizer.state != .failed {
                 return false
             }
         } else if gestureRecognizer.isEqual(panGesture) {
-            if longPress!.state == .Possible || longPress!.state == .Failed {
+            if longPress!.state == .possible || longPress!.state == .failed {
                 return false
             }
         }
@@ -429,7 +462,7 @@ extension RAReorderableLayout: UIGestureRecognizerDelegate {
         return true
     }
     
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(longPress) {
             if otherGestureRecognizer.isEqual(panGesture) {
                 return true
@@ -437,7 +470,7 @@ extension RAReorderableLayout: UIGestureRecognizerDelegate {
         } else if gestureRecognizer.isEqual(panGesture) {
             return otherGestureRecognizer.isEqual(longPress)
         } else if gestureRecognizer.isEqual(collectionView?.panGestureRecognizer) {
-            if longPress!.state != .Possible || longPress!.state != .Failed {
+            if longPress!.state != .possible || longPress!.state != .failed {
                 return false
             }
         }
@@ -452,8 +485,8 @@ extension RAReorderableLayout: UIGestureRecognizerDelegate {
 internal extension RAReorderableLayout {
     
     // long press gesture
-    internal func handleLongPress(longPress: UILongPressGestureRecognizer!) {
-        var indexPathOptional = collectionView?.indexPathForItemAtPoint(longPress.locationInView(collectionView)) ?? nil
+    internal func handleLongPress(_ longPress: UILongPressGestureRecognizer!) {
+        var indexPathOptional = collectionView?.indexPathForItem(at: longPress.location(in: collectionView)) ?? nil
         if nil != cellFakeView {
             indexPathOptional = cellFakeView!.indexPath
         }
@@ -461,18 +494,18 @@ internal extension RAReorderableLayout {
         guard let indexPath = indexPathOptional else { return }
         
         switch longPress.state {
-        case .Began:
+        case .began:
             // will begin drag item
             delegate?.collectionView?(collectionView!, collectionViewLayout: self, willBeginDraggingItemAtIndexPath: indexPath)
             
             collectionView?.scrollsToTop = false
             
-            let currentCell: UICollectionViewCell? = collectionView?.cellForItemAtIndexPath(indexPath)
+            let currentCell: UICollectionViewCell? = collectionView?.cellForItem(at: indexPath)
             
             cellFakeView = RACellFakeView(cell: currentCell!)
             cellFakeView!.indexPath = indexPath
             cellFakeView!.originalCenter = currentCell?.center
-            cellFakeView!.cellFrame = layoutAttributesForItemAtIndexPath(indexPath)!.frame
+            cellFakeView!.cellFrame = layoutAttributesForItem(at: indexPath)!.frame
             collectionView?.addSubview(cellFakeView!)
             
             fakeCellCenter = cellFakeView!.center
@@ -484,7 +517,7 @@ internal extension RAReorderableLayout {
             // did begin drag item
             delegate?.collectionView?(collectionView!, collectionViewLayout: self, didBeginDraggingItemAtIndexPath: indexPath)
             
-        case .Ended, .Cancelled:
+        case .ended, .cancelled:
             cancelDrag(toIndexPath: indexPath)
             
         default: ()
@@ -492,19 +525,19 @@ internal extension RAReorderableLayout {
     }
     
     // pan gesture
-    internal func handlePanGesture(pan: UIPanGestureRecognizer!) {
-        panTranslation = pan.translationInView(collectionView!)
+    internal func handlePanGesture(_ pan: UIPanGestureRecognizer!) {
+        panTranslation = pan.translation(in: collectionView!)
         
         if nil != cellFakeView && nil != fakeCellCenter && nil != panTranslation {
             switch pan.state {
-            case .Changed:
+            case .changed:
                 cellFakeView!.center.x = fakeCellCenter!.x + panTranslation!.x
                 cellFakeView!.center.y = fakeCellCenter!.y + panTranslation!.y
                 
                 beginScrollIfNeeded()
                 moveItemIfNeeded()
                 
-            case .Ended, .Cancelled:
+            case .ended, .cancelled:
                 invalidateDisplayLink()
                 
             default: ()
@@ -524,11 +557,11 @@ private class RACellFakeView: UIView {
     
     var cellFakeHightedView: UIImageView?
     
-    private var indexPath: NSIndexPath?
+    fileprivate var indexPath: IndexPath?
     
-    private var originalCenter: CGPoint?
+    fileprivate var originalCenter: CGPoint?
     
-    private var cellFrame: CGRect?
+    fileprivate var cellFrame: CGRect?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -539,75 +572,75 @@ private class RACellFakeView: UIView {
         
         self.cell = cell
         
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0
         layer.shadowRadius = 5.0
         layer.shouldRasterize = false
         
         cellFakeImageView = UIImageView(frame: self.bounds)
-        cellFakeImageView?.contentMode = .ScaleAspectFill
-        cellFakeImageView?.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
+        cellFakeImageView?.contentMode = .scaleAspectFill
+        cellFakeImageView?.autoresizingMask = [.flexibleWidth , .flexibleHeight]
         
         cellFakeHightedView = UIImageView(frame: self.bounds)
-        cellFakeHightedView?.contentMode = .ScaleAspectFill
-        cellFakeHightedView?.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
+        cellFakeHightedView?.contentMode = .scaleAspectFill
+        cellFakeHightedView?.autoresizingMask = [.flexibleWidth , .flexibleHeight]
         
-        cell.highlighted = true
+        cell.isHighlighted = true
         cellFakeHightedView?.image = getCellImage()
         
-        cell.highlighted = false
+        cell.isHighlighted = false
         cellFakeImageView?.image = getCellImage()
         
         addSubview(cellFakeImageView!)
         addSubview(cellFakeHightedView!)
     }
     
-    func changeBoundsIfNeeded(bounds: CGRect) {
-        if CGRectEqualToRect(self.bounds, bounds) {
+    func changeBoundsIfNeeded(_ bounds: CGRect) {
+        if self.bounds.equalTo(bounds) {
             return
         }
         
-        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0, options: .beginFromCurrentState, animations: { () -> Void in
             self.bounds = bounds
             }, completion: nil)
     }
     
     func pushFowardView() {
-        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .beginFromCurrentState, animations: {
             self.center = self.originalCenter!
-            self.transform = CGAffineTransformMakeScale(1.1, 1.1)
+            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             self.cellFakeHightedView!.alpha = 0;
             let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
             shadowAnimation.fromValue = 0
             shadowAnimation.toValue = 0.7
-            shadowAnimation.removedOnCompletion = false
+            shadowAnimation.isRemovedOnCompletion = false
             shadowAnimation.fillMode = kCAFillModeForwards
-            self.layer.addAnimation(shadowAnimation, forKey: "applyShadow")
+            self.layer.add(shadowAnimation, forKey: "applyShadow")
             }, completion: { (finished) -> Void in
                 self.cellFakeHightedView!.removeFromSuperview()
         })
     }
     
-    func pushBackView(completion: (()->Void)?) {
-        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
-            self.transform = CGAffineTransformIdentity
+    func pushBackView(_ completion: (()->Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .beginFromCurrentState, animations: {
+            self.transform = CGAffineTransform.identity
             self.frame = self.cellFrame!
             let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
             shadowAnimation.fromValue = 0.7
             shadowAnimation.toValue = 0
-            shadowAnimation.removedOnCompletion = false
+            shadowAnimation.isRemovedOnCompletion = false
             shadowAnimation.fillMode = kCAFillModeForwards
-            self.layer.addAnimation(shadowAnimation, forKey: "removeShadow")
+            self.layer.add(shadowAnimation, forKey: "removeShadow")
             }, completion: { (finished) -> Void in
                 completion?()
         })
     }
     
-    private func getCellImage() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(cell!.bounds.size, false, UIScreen.mainScreen().scale * 2)
-        cell!.drawViewHierarchyInRect(cell!.bounds, afterScreenUpdates: true)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+    fileprivate func getCellImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(cell!.bounds.size, false, UIScreen.main.scale * 2)
+        cell!.drawHierarchy(in: cell!.bounds, afterScreenUpdates: true)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
     }
