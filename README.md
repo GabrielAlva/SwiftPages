@@ -1,3 +1,5 @@
+Converted to Swift 3 syntax.
+
 <p align="center">
   <img src ="https://github.com/GabrielAlva/SwiftPages/blob/master/Resources/SwiftPages%20Header%20Image.png"/>
 </p>
