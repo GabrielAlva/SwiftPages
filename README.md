@@ -122,6 +122,7 @@ You can find a full example on usage and customization on the Xcode project atta
 The MIT License (MIT)
 
 **Copyright (c) 2015 Gabriel Alvarado (gabrielle.alva@gmail.com)**
+
 Converted to Swift 3 by Rodolfo Antonici @ZupIT.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
