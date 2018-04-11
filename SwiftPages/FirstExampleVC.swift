@@ -29,7 +29,7 @@ class FirstExampleVC: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let VCsInstanciated = VCIDs.map({ storyboard.instantiateViewControllerWithIdentifier($0) })
+        let VCsInstanciated = VCIDs.map({ storyboard.instantiateViewController(withIdentifier: $0) })
         
         // Sample customization
         swiftPagesView.initializeWithVCsInstanciatedArrayAndButtonImagesArray(VCsInstanciated, buttonImagesArray: buttonImages)
